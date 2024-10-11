@@ -100,7 +100,9 @@ let wheelTimeout = setTimeout(() => {
  * 滚轮向下下一句
  */
 export function useMouseWheel() {
+  const dispatch = useDispatch();
   const GUIStore = useGenSyncRef((state: RootState) => state.GUI);
+  const GUIStoreSelector = useSelector((state: RootState) => state.GUI);
   const setComponentVisibility = useSetComponentVisibility();
   const isGameActive = useGameActive(GUIStore);
   const isInBackLog = useIsInBackLog(GUIStore);
@@ -122,7 +124,7 @@ export function useMouseWheel() {
       'down';
     const ctrlKey = ev.ctrlKey;
     const dom = document.querySelector(`.${styles.backlog_content}`);
-    if (isGameActive() && direction === 'up' && !ctrlKey) {
+    if (isGameActive() && direction === 'up' && !ctrlKey && GUIStoreSelector.showBacklogIcon) {
       setComponentVisibility('showBacklog', true);
       setComponentVisibility('showTextBox', false);
     } else if (isInBackLog() && direction === 'down' && !ctrlKey) {
@@ -146,13 +148,20 @@ export function useMouseWheel() {
       }, 150);
       next();
     }
-  }, []);
+  }, [dispatch, GUIStoreSelector.showBacklogIcon, isGameActive, isInBackLog, isPanicOverlayOpen]);
   useMounted(() => {
     document.addEventListener('wheel', handleMouseWheel);
   });
   useUnMounted(() => {
     document.removeEventListener('wheel', handleMouseWheel);
   });
+  // 在状态变化时重新绑定事件监听器
+  useEffect(() => {
+    document.addEventListener('wheel', handleMouseWheel);
+    return () => {
+      document.removeEventListener('wheel', handleMouseWheel);
+    };
+  }, [handleMouseWheel, GUIStoreSelector.showBacklogIcon]);
 }
 
 /**

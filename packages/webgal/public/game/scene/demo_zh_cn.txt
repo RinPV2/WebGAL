@@ -3,11 +3,17 @@ unlockBgm:s_Title.mp3 -name=雲を追いかけて;
 intro:你好|欢迎来到 {egine} 的世界;
 changeBg:WebGalEnter.png -next;
 setTransition: -target=bg-main -exit=shockwaveOut;
-:你好|欢迎来到 {egine} 的世界;
+:你好|欢迎来到 {egine} 的世界11111111111111;
 changeBg:bg.png -next;
+:222222222222222
+showBacklogIcon:show;
+:333333333333333
+:444444444444444
+showBacklogIcon:unshow;
 setTransition: -target=bg-main -enter=shockwaveIn -next;
 unlockCg:bg.png -name=良い夜; // 解锁CG并赋予名称
 changeFigure:stand.png -left -enter=enter-from-left -next;
+showBacklogIcon:show;
 miniAvatar:miniavatar.png;
 {heroine}:欢迎使用 {egine}！这是一款全新的网页端视觉小说引擎。 -v1.wav;
 changeFigure:stand2.png -right -next;
@@ -17,6 +23,7 @@ setAnimation:move-front-and-back -target=fig-left -continue;
 听起来是不是非常吸引人？ -v4.wav;
 changeFigure:none -right -next;
 setTransform:{"position": {"x": 500,"y": 0}} -target=fig-left -next;
+showBacklogIcon:unshow;
 {egine} 引擎也具有动画系统和特效系统，使用 {egine} 开发的游戏可以拥有很好的表现效果。 -v5.wav;
 pixiInit;
 pixiPerform:snow;

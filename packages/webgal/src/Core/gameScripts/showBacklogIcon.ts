@@ -11,7 +11,7 @@ import { setVisibility } from "@/store/GUIReducer";
  */
 export const showBacklogIcon = (sentence: ISentence): IPerform => {
     const show = sentence.content === 'show';
-    const dispatch = useDispatch();
+    const dispatch = webgalStore.dispatch;
     dispatch(setVisibility({ component: 'showBacklogIcon', visibility: show }));
     return {
         performName: 'none',
