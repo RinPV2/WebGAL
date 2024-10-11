@@ -29,6 +29,7 @@ export interface IGuiState {
   showPanicOverlay: boolean;
   isEnterGame: boolean;
   isShowLogo: boolean;
+  showBacklogIcon: boolean;
 }
 
 export type componentsVisibility = Pick<

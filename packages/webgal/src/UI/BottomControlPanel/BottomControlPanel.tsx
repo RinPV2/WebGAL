@@ -120,25 +120,27 @@ export const BottomControlPanel = () => {
               <span className={styles.button_text}>{t('buttons.show')}</span>
             </span>
           )}
-          <span
-            className={styles.singleButton}
-            style={{ fontSize }}
-            onClick={() => {
-              setComponentVisibility('showBacklog', true);
-              setComponentVisibility('showTextBox', false);
-              playSeClick();
-            }}
-            onMouseEnter={playSeEnter}
-          >
-            <AlignTextLeftOne
-              className={styles.button}
-              theme="outline"
-              size={size}
-              fill="#f5f5f7"
-              strokeWidth={strokeWidth}
-            />
-            <span className={styles.button_text}>{t('buttons.backlog')}</span>
-          </span>
+          {GUIStore.showBacklogIcon && (
+            <span
+              className={styles.singleButton}
+              style={{ fontSize }}
+              onClick={() => {
+                setComponentVisibility('showBacklog', true);
+                setComponentVisibility('showTextBox', false);
+                playSeClick();
+              }}
+              onMouseEnter={playSeEnter}
+            >
+              <AlignTextLeftOne
+                className={styles.button}
+                theme="outline"
+                size={size}
+                fill="#f5f5f7"
+                strokeWidth={strokeWidth}
+              />
+              <span className={styles.button_text}>{t('buttons.backlog')}</span>
+            </span>
+          )}
           <span
             className={styles.singleButton}
             style={{ fontSize }}
