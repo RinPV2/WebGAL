@@ -43,7 +43,7 @@ export function useHotkey(opt?: HotKeyType) {
   useMouseRightClickHotKey();
   useMouseWheel();
   useSkip();
-  usePanic();
+  // usePanic();
   useFastSaveBeforeUnloadPage();
   useSpaceAndEnter();
   useToggleFullScreen();
@@ -102,7 +102,6 @@ let wheelTimeout = setTimeout(() => {
 export function useMouseWheel() {
   const dispatch = useDispatch();
   const GUIStore = useGenSyncRef((state: RootState) => state.GUI);
-  const GUIStoreSelector = useSelector((state: RootState) => state.GUI);
   const setComponentVisibility = useSetComponentVisibility();
   const isGameActive = useGameActive(GUIStore);
   const isInBackLog = useIsInBackLog(GUIStore);
@@ -124,7 +123,7 @@ export function useMouseWheel() {
       'down';
     const ctrlKey = ev.ctrlKey;
     const dom = document.querySelector(`.${styles.backlog_content}`);
-    if (isGameActive() && direction === 'up' && !ctrlKey && GUIStoreSelector.showBacklogIcon) {
+    if (isGameActive() && direction === 'up' && !ctrlKey && GUIStore.current.showBacklogIcon) {
       setComponentVisibility('showBacklog', true);
       setComponentVisibility('showTextBox', false);
     } else if (isInBackLog() && direction === 'down' && !ctrlKey) {
@@ -148,7 +147,7 @@ export function useMouseWheel() {
       }, 150);
       next();
     }
-  }, [dispatch, GUIStoreSelector.showBacklogIcon, isGameActive, isInBackLog, isPanicOverlayOpen]);
+  }, [dispatch, GUIStore.current.showBacklogIcon, isGameActive, isInBackLog, isPanicOverlayOpen]);
   useMounted(() => {
     document.addEventListener('wheel', handleMouseWheel);
   });
@@ -161,7 +160,7 @@ export function useMouseWheel() {
     return () => {
       document.removeEventListener('wheel', handleMouseWheel);
     };
-  }, [handleMouseWheel, GUIStoreSelector.showBacklogIcon]);
+  }, [handleMouseWheel, GUIStore.current.showBacklogIcon]);
 }
 
 /**
@@ -206,6 +205,7 @@ export function useSkip() {
   // 判断按键是否为ctrl
   const isCtrlKey = useCallback((e) => e.keyCode === 17, []);
   const handleCtrlKeydown = useCallback((e) => {
+    if(GUIStore.current.isGuiding) return; // 引导中不操作
     if (isCtrlKey(e) && isGameActive()) {
       startFast();
     }
@@ -243,8 +243,10 @@ export function useSkip() {
  * F5刷新 & 其他情况下导致页面卸载时快速保存
  */
 export function useFastSaveBeforeUnloadPage() {
+  const GUIStore = useGenSyncRef((state: RootState) => state.GUI);
   const validMenuGameStart = useValidMenuGameStart();
   const handleWindowUnload = useCallback(async (e: BeforeUnloadEvent) => {
+    if(GUIStore.current.isGuiding) return; // 引导中不操作
     if (validMenuGameStart()) {
       // 游戏启动了才保存数据 防止无效数据覆盖现在的数据
       await fastSaveGame();
@@ -345,6 +347,7 @@ export function useSpaceAndEnter() {
   }, []);
   const handleKeydown = useCallback((e) => {
     if (isSpaceOrEnter(e) && isGameActive() && !lockRef.current) {
+      if(GUIStore.current.isGuiding) return; // 引导中不操作
       if (!GUIStore.current.showTextBox) {
         setComponentVisibility('showTextBox', true);
         return;

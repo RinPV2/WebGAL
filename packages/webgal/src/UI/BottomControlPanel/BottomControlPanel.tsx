@@ -74,16 +74,15 @@ export const BottomControlPanel = () => {
       </div>
     );
   }
-  const [isGlowing, setIsGlowing] = useState(true);
   useEffect(() => {
     if (GUIStore.showBacklog) {
-      setIsGlowing(false);  // 当 showBacklog 为真时，停止发光
+      setComponentVisibility('isGuiding', false);  // 当 showBacklog 为真时，停止发光
     }
   }, [GUIStore.showBacklog]); 
 
   useEffect(() => {
     if (GUIStore.showBacklogIcon) {
-      setIsGlowing(true);  // 当 showBacklogIcon 为真时，开始发光
+      setComponentVisibility('isGuiding', true);  // 当 showBacklogIcon 为真时，开始发光
     }
   }, [GUIStore.showBacklogIcon]); 
 
@@ -92,6 +91,9 @@ export const BottomControlPanel = () => {
     <>
       {GUIStore.showTextBox && stageState.enableFilm === '' && (
         <div className={styles.main} style={{ visibility: GUIStore.controlsVisibility ? 'visible' : 'hidden' }}>
+          {GUIStore.isGuiding && GUIStore.showBacklogIcon && (
+            <div className={styles.overlay}></div>  // 全屏遮罩层
+          )}
           {GUIStore.showTextBox && (
             <span
               className={styles.singleButton}
@@ -139,8 +141,8 @@ export const BottomControlPanel = () => {
               onClick={() => {
                 setComponentVisibility('showBacklog', true);
                 setComponentVisibility('showTextBox', false);
+                setComponentVisibility('isGuiding', false);
                 playSeClick();
-                setIsGlowing(false);
               }}
               onMouseEnter={playSeEnter}
             >
@@ -151,7 +153,7 @@ export const BottomControlPanel = () => {
                 fill="#f5f5f7"
                 strokeWidth={strokeWidth}
               />
-              <span className={`${styles.button_text} ${isGlowing ? styles.glowEffect : ''}`}>{t('buttons.backlog')}</span>
+              <span className={`${styles.button_text} ${GUIStore.isGuiding ? styles.glowEffect : ''}`}>{t('buttons.backlog')}</span>
             </span>
           )}
           <span

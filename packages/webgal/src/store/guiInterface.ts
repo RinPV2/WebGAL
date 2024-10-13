@@ -30,6 +30,7 @@ export interface IGuiState {
   isEnterGame: boolean;
   isShowLogo: boolean;
   showBacklogIcon: boolean;
+  isGuiding: boolean;
 }
 
 export type componentsVisibility = Pick<

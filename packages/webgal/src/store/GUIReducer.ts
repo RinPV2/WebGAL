@@ -28,6 +28,7 @@ const initState: IGuiState = {
   isEnterGame: false,
   isShowLogo: true,
   showBacklogIcon: true,
+  isGuiding: false,
 };
 
 /**
