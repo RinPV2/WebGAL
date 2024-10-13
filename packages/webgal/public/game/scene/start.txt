@@ -1,7 +1,3 @@
-;start不要写内容，主要用来跳转和注册变量
-;:GlobalNum={GlobalNum} -when=GlobalNum==first;
-setVar:GlobalNum=0 -global -when=GlobalNum==first;
-showBacklogIcon:unshow -next;
-;:现在GlobalNum是{GlobalNum} -hold;
-changeScene:opening.txt;
-showBacklogIcon:unshow;
+setVar:heroine=WebGAL;
+setVar:egine=WebGAL;
+choose:简体中文:demo_zh_cn.txt|日本語:demo_ja.txt|English:demo_en.txt|Test:function_test.txt;
