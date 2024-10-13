@@ -6,3 +6,4 @@ Game_Logo:WebGalEnter.png;
 Debug:true;
 GameNum:10;
 GameNum_Double:20;
+GlobalNum:first;
