@@ -126,3 +126,19 @@
   overflow: hidden;
   padding: 0 0 0 0.5em;
 }
+
+.glowEffect {
+  animation: glow_text 1.5s ease-in-out infinite; 
+}
+
+@keyframes glow_text {
+  0% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #227D51, 0 0 20px #227D51;
+  }
+  50% {
+    text-shadow: 0 0 20px #fff, 0 0 30px #227D51, 0 0 40px #227D51, 0 0 50px #227D51;
+  }
+  100% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #227D51, 0 0 20px #227D51;
+  }
+}

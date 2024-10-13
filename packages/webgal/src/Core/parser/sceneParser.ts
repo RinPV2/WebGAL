@@ -69,7 +69,7 @@ export const SCRIPT_TAG_MAP = defineScripts({
   setTransition: ScriptConfig(commandType.setTransition, setTransition, { next: true }),
   getUserInput: ScriptConfig(commandType.getUserInput, getUserInput),
   applyStyle: ScriptConfig(commandType.applyStyle, applyStyle, { next: true }),
-  showBacklogIcon: ScriptConfig(commandType.showBacklogIcon, showBacklogIcon),
+  showBacklogIcon: ScriptConfig(commandType.showBacklogIcon, showBacklogIcon, { next: true }),
   // if: ScriptConfig(commandType.if, undefined, { next: true }),
 });
 

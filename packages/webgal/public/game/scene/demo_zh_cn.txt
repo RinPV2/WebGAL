@@ -2,14 +2,15 @@ bgm:s_Title.mp3 -volume=80 -enter=3000;
 unlockBgm:s_Title.mp3 -name=雲を追いかけて;
 intro:你好|欢迎来到 {egine} 的世界;
 changeBg:WebGalEnter.png -next;
+showBacklogIcon:unshow;
 setTransition: -target=bg-main -exit=shockwaveOut;
 :你好|欢迎来到 {egine} 的世界11111111111111;
 changeBg:bg.png -next;
-:222222222222222
 showBacklogIcon:show;
+:222222222222222
 :333333333333333
-:444444444444444
 showBacklogIcon:unshow;
+:444444444444444
 setTransition: -target=bg-main -enter=shockwaveIn -next;
 unlockCg:bg.png -name=良い夜; // 解锁CG并赋予名称
 changeFigure:stand.png -left -enter=enter-from-left -next;

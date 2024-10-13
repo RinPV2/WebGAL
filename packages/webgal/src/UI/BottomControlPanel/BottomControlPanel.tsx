@@ -28,7 +28,7 @@ import useTrans from '@/hooks/useTrans';
 import { useTranslation } from 'react-i18next';
 import useSoundEffect from '@/hooks/useSoundEffect';
 import { showGlogalDialog, switchControls } from '@/UI/GlobalDialog/GlobalDialog';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getSavesFromStorage } from '@/Core/controller/storage/savesController';
 
 export const BottomControlPanel = () => {
@@ -74,6 +74,18 @@ export const BottomControlPanel = () => {
       </div>
     );
   }
+  const [isGlowing, setIsGlowing] = useState(true);
+  useEffect(() => {
+    if (GUIStore.showBacklog) {
+      setIsGlowing(false);  // 当 showBacklog 为真时，停止发光
+    }
+  }, [GUIStore.showBacklog]); 
+
+  useEffect(() => {
+    if (GUIStore.showBacklogIcon) {
+      setIsGlowing(true);  // 当 showBacklogIcon 为真时，开始发光
+    }
+  }, [GUIStore.showBacklogIcon]); 
 
   return (
     // <div className={styles.ToCenter}>
@@ -128,6 +140,7 @@ export const BottomControlPanel = () => {
                 setComponentVisibility('showBacklog', true);
                 setComponentVisibility('showTextBox', false);
                 playSeClick();
+                setIsGlowing(false);
               }}
               onMouseEnter={playSeEnter}
             >
@@ -138,7 +151,7 @@ export const BottomControlPanel = () => {
                 fill="#f5f5f7"
                 strokeWidth={strokeWidth}
               />
-              <span className={styles.button_text}>{t('buttons.backlog')}</span>
+              <span className={`${styles.button_text} ${isGlowing ? styles.glowEffect : ''}`}>{t('buttons.backlog')}</span>
             </span>
           )}
           <span
