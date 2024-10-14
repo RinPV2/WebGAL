@@ -1,7 +1,7 @@
 ;start不要写内容，主要用来跳转和注册变量
 ;:GlobalNum={GlobalNum} -when=GlobalNum==first;
 setVar:GlobalNum=0 -global -when=GlobalNum==first;
-showBacklogIcon:unshow -next;
+showBacklogIcon:unshow;
+isGuiding:off;
 ;:现在GlobalNum是{GlobalNum} -hold;
 changeScene:opening.txt;
-showBacklogIcon:unshow;

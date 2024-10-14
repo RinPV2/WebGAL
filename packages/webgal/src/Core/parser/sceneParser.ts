@@ -37,6 +37,7 @@ import { defineScripts, IConfigInterface, ScriptConfig, ScriptFunction, scriptRe
 import { applyStyle } from '@/Core/gameScripts/applyStyle';
 import { showBacklogIcon } from '../gameScripts/showBacklogIcon';
 import { isGuiding } from '../gameScripts/isGuiding';
+import { info } from '../gameScripts/info';
 
 export const SCRIPT_TAG_MAP = defineScripts({
   intro: ScriptConfig(commandType.intro, intro),
@@ -72,6 +73,7 @@ export const SCRIPT_TAG_MAP = defineScripts({
   applyStyle: ScriptConfig(commandType.applyStyle, applyStyle, { next: true }),
   showBacklogIcon: ScriptConfig(commandType.showBacklogIcon, showBacklogIcon, { next: true }),
   isGuiding: ScriptConfig(commandType.isGuiding, isGuiding, { next: true }),
+  info: ScriptConfig(commandType.info, info),
   // if: ScriptConfig(commandType.if, undefined, { next: true }),
 });
 
