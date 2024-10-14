@@ -39,6 +39,7 @@ export enum commandType {
   getUserInput,
   applyStyle,
   showBacklogIcon, // 显示回溯按钮
+  isGuiding, // 是否处于引导状态
 }
 
 /**

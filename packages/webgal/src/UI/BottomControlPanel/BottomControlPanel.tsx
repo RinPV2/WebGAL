@@ -74,17 +74,6 @@ export const BottomControlPanel = () => {
       </div>
     );
   }
-  useEffect(() => {
-    if (GUIStore.showBacklog) {
-      setComponentVisibility('isGuiding', false);  // 当 showBacklog 为真时，停止发光
-    }
-  }, [GUIStore.showBacklog]); 
-
-  useEffect(() => {
-    if (GUIStore.showBacklogIcon) {
-      setComponentVisibility('isGuiding', true);  // 当 showBacklogIcon 为真时，开始发光
-    }
-  }, [GUIStore.showBacklogIcon]); 
 
   return (
     // <div className={styles.ToCenter}>

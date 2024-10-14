@@ -32,6 +32,7 @@ export const SCRIPT_CONFIG = [
   { scriptString: 'playEffect', scriptType: commandType.playEffect },
   { scriptString: 'applyStyle', scriptType: commandType.applyStyle },
   { scriptString: 'showBacklogIcon', scriptType: commandType.showBacklogIcon },
+  { scriptString: 'isGuiding', scriptType: commandType.isGuiding },
 ];
 export const ADD_NEXT_ARG_LIST = [
   commandType.bgm,
