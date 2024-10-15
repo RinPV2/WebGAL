@@ -41,6 +41,7 @@ export enum commandType {
   showBacklogIcon, // 显示回溯按钮
   isGuiding, // 是否处于引导状态
   info, // 提醒信息框
+  backFromBook, // 从圣典返回
 }
 
 /**

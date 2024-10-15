@@ -33,6 +33,7 @@ export const SCRIPT_CONFIG = [
   { scriptString: 'applyStyle', scriptType: commandType.applyStyle },
   { scriptString: 'showBacklogIcon', scriptType: commandType.showBacklogIcon },
   { scriptString: 'isGuiding', scriptType: commandType.isGuiding },
+  { scriptString: 'backFromBook', scriptType: commandType.backFromBook },
 ];
 export const ADD_NEXT_ARG_LIST = [
   commandType.bgm,

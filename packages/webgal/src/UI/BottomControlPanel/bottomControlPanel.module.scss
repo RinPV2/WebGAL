@@ -166,3 +166,9 @@
     opacity: 1;
   }
 }
+
+.book_container {
+  position: fixed;
+  top: 10px;  // 距离顶部的距离
+  left: 10px; // 距离左边的距离
+}

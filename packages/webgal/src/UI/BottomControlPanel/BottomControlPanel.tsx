@@ -9,14 +9,15 @@ import {
   ReplayMusic,
   Save,
   SettingTwo,
-  DoubleDown,
-  DoubleUp,
-  Lock,
-  Unlock,
+  // DoubleDown,
+  // DoubleUp,
+  // Lock,
+  // Unlock,
+  BookOpen,
 } from '@icon-park/react';
 import styles from './bottomControlPanel.module.scss';
-import { switchAuto } from '@/Core/controller/gamePlay/autoPlay';
-import { switchFast } from '@/Core/controller/gamePlay/fastSkip';
+import { stopAuto, switchAuto } from '@/Core/controller/gamePlay/autoPlay';
+import { stopFast, switchFast } from '@/Core/controller/gamePlay/fastSkip';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { setMenuPanelTag, setVisibility } from '@/store/GUIReducer';
@@ -30,6 +31,9 @@ import useSoundEffect from '@/hooks/useSoundEffect';
 import { showGlogalDialog, switchControls } from '@/UI/GlobalDialog/GlobalDialog';
 import { useEffect, useState } from 'react';
 import { getSavesFromStorage } from '@/Core/controller/storage/savesController';
+import { callScene } from '@/Core/controller/scene/callScene';
+import { stopAllPerform } from '@/Core/controller/gamePlay/stopAllPerform';
+import { setStage } from '@/store/stageReducer';
 
 export const BottomControlPanel = () => {
   const t = useTrans('gaming.');
@@ -44,6 +48,8 @@ export const BottomControlPanel = () => {
     fontSize = '125%';
     size = 40;
   }
+  let big_size = 60;
+  let big_fontSize = '250%';
   const GUIStore = useSelector((state: RootState) => state.GUI);
   const stageState = useSelector((state: RootState) => state.stage);
   const dispatch = useDispatch();
@@ -83,6 +89,41 @@ export const BottomControlPanel = () => {
           {GUIStore.isGuiding && GUIStore.showBacklogIcon && (
             <div className={styles.overlay}></div>  // 全屏遮罩层
           )}
+          <div className={styles.book_container}>
+            <span
+              id="Button_Book"
+              className={styles.singleButton}
+              style={{ fontSize: big_fontSize }}
+              onClick={() => {
+                playSeClick();
+                if(GUIStore.showBook){
+                  setComponentVisibility('showBook', false);
+                  loadGame(0);
+                }
+                else{
+                  setComponentVisibility('showBook', true);
+                  //中断所有演出
+                  stopAllPerform();
+                  stopAuto();
+                  stopFast();
+                  // 清除语音
+                  dispatch(setStage({ key: 'playVocal', value: '' }));
+                  saveGame(0);
+                  callScene("./game/scene/Page.txt", "Page.txt");
+                }
+              }}
+              onMouseEnter={playSeEnter}
+            >
+              <BookOpen
+                className={styles.button} 
+                theme="outline" 
+                size={big_size} 
+                fill="#f5f5f7" 
+                strokeWidth={strokeWidth} 
+              />
+              <span className={styles.button_text}>{t('buttons.book')}</span>
+            </span>
+          </div>
           {GUIStore.showTextBox && (
             <span
               className={styles.singleButton}
@@ -200,7 +241,7 @@ export const BottomControlPanel = () => {
             />
             <span className={styles.button_text}>{t('buttons.forward')}</span>
           </span>
-          <span
+          {/* <span
             className={styles.singleButton + ' ' + styles.fastsave}
             style={{ fontSize }}
             onClick={() => {
@@ -231,7 +272,7 @@ export const BottomControlPanel = () => {
             <DoubleUp className={styles.button} theme="outline" size={size} fill="#f5f5f7" strokeWidth={strokeWidth} />
             <span className={styles.button_text}>{t('buttons.quicklyLoad')}</span>
             <div className={styles.fastSlPreview + ' ' + styles.fastLPreview}>{fastSlPreview}</div>
-          </span>
+          </span> */}
           <span
             className={styles.singleButton}
             style={{ fontSize }}
@@ -303,7 +344,7 @@ export const BottomControlPanel = () => {
             <Home className={styles.button} theme="outline" size={size} fill="#f5f5f7" strokeWidth={strokeWidth} />
             <span className={styles.button_text}>{t('buttons.title')}</span>
           </span>
-          <span
+          {/* <span
             className={styles.singleButton}
             style={{ fontSize }}
             onClick={() => {
@@ -317,7 +358,7 @@ export const BottomControlPanel = () => {
             ) : (
               <Unlock className={styles.button} theme="outline" size={size} fill="#f5f5f7" strokeWidth={strokeWidth} />
             )}
-          </span>
+          </span> */}
         </div>
       )}
     </>
