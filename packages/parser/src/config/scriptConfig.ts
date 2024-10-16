@@ -34,6 +34,7 @@ export const SCRIPT_CONFIG = [
   { scriptString: 'showBacklogIcon', scriptType: commandType.showBacklogIcon },
   { scriptString: 'isGuiding', scriptType: commandType.isGuiding },
   { scriptString: 'backFromBook', scriptType: commandType.backFromBook },
+  { scriptString: 'enableEarthquake', scriptType: commandType.enableEarthquake },
 ];
 export const ADD_NEXT_ARG_LIST = [
   commandType.bgm,

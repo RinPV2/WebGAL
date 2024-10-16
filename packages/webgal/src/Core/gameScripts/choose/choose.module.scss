@@ -52,3 +52,23 @@
   color: #000;
   min-width: 50%;
 }
+
+.Progress_bar {
+  width: 100%;
+  height: 4px;
+  background-color: rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  margin-top: 5px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: rgba(0, 150, 255, 0.8);
+    width: var(--progress-width, 0%);
+    transition: width 0s; /* 动态设置，不预设固定的动画 */
+  }
+}

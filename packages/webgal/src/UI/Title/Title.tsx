@@ -156,7 +156,7 @@ const Title: FC = () => {
             backgroundSize: 'cover',
           }}
         >
-          <div ref={effectsContainer} className={styles.pixiCanvas}></div> {/* 特效层 */}
+          <div ref={effectsContainer} className={styles.Title_pixi_canvas}></div> {/* 特效层 */}
           <div className={applyStyle('Title_buttonList', styles.Title_buttonList)}>
             <div
               className={applyStyle('Title_button', styles.Title_button)}

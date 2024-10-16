@@ -42,6 +42,7 @@ export enum commandType {
   isGuiding, // 是否处于引导状态
   info, // 提醒信息框
   backFromBook, // 从圣典返回
+  enableEarthquake, // 启用地震
 }
 
 /**

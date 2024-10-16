@@ -158,6 +158,7 @@ export interface IStageState {
   enableFilm: string;
   isDisableTextbox: boolean;
   replacedUIlable: Record<string, string>;
+  enableEarthquake: boolean;
 }
 
 /**

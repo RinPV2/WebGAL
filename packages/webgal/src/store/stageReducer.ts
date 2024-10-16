@@ -56,6 +56,7 @@ export const initState: IStageState = {
   enableFilm: '',
   isDisableTextbox: false,
   replacedUIlable: {},
+  enableEarthquake: false,
 };
 
 /**

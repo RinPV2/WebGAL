@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import styles from './stage.module.scss';
 import { TextBox } from './TextBox/TextBox';
 import { AudioContainer } from './AudioContainer/AudioContainer';
@@ -105,6 +105,27 @@ export const Stage: FC = () => {
   const dispatch = useDispatch();
 
   useHotkey();
+  
+  useEffect(() => {
+    const pixiContainer = document.getElementById('pixiContianer');
+
+    if (pixiContainer && stageState.enableEarthquake) {
+      // 获取 pixiContainer 的所有子节点
+      const children = pixiContainer.children;
+      // 遍历所有子节点并为其添加动画类
+      for (let i = 0; i < children.length; i++) {
+        const child = children[i] as HTMLElement;
+        child.style.animation = 'shake 0.5s infinite ease-in-out'; // 动态添加 shake 动画
+      }
+    } else if (pixiContainer) {
+      // 停止动画
+      const children = pixiContainer.children;
+      for (let i = 0; i < children.length; i++) {
+        const child = children[i] as HTMLElement;
+        child.style.animation = ''; // 清除动画
+      }
+    }
+  }, [stageState.enableEarthquake]);
 
   return (
     <div className={styles.MainStage_main}>

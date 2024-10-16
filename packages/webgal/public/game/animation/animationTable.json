@@ -15,5 +15,7 @@
   "godrayFilm",
   "removeFilm",
   "shockwaveIn",
-  "shockwaveOut"
+  "shockwaveOut",
+  "exit-to-left",
+  "exit-to-right"
 ]

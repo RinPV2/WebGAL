@@ -83,6 +83,8 @@ export const choose = (sentence: ISentence): IPerform => {
 function Choose(props: { chooseOptions: ChooseOption[] }) {
   const fontFamily = webgalStore.getState().userData.optionData.textboxFont;
   const font = fontFamily === textFont.song ? '"思源宋体", serif' : '"WebgalUI", serif';
+  const longPressTime = 3000; // 长按时间 5 秒
+  const decreaseWidth = 2.5; // 每次减少的宽度
   const { playSeEnter, playSeClick } = useSEByWebgalStore();
   const applyStyle = useApplyStyle('Stage/Choose/choose.scss');
   // 运行时计算JSX.Element[]
@@ -94,8 +96,70 @@ function Choose(props: { chooseOptions: ChooseOption[] }) {
         const className = enable
           ? applyStyle('Choose_item', styles.Choose_item)
           : applyStyle('Choose_item_disabled', styles.Choose_item_disabled);
+        
+        let isLongPressTrigger = false;
+        let progressElement: HTMLElement | null = null;
+        let currentProgress = 0; // 当前进度
+        const chkLongPress = e.text.split('-');
+        if(chkLongPress.length > 1) 
+          isLongPressTrigger = true;
+        const showText = chkLongPress[0];
+        // 新增长按处理逻辑
+        let timeoutId: ReturnType<typeof setTimeout> | null = null;
+
+        const handleMouseDown = (event: React.MouseEvent) => {
+          if (!enable) return;
+          if (!isLongPressTrigger) return;
+        
+          // 获取进度条元素
+          progressElement = (event.currentTarget as HTMLElement).firstElementChild?.firstElementChild as HTMLElement;
+          console.log(e.text, e);
+        
+          if (progressElement) {
+            console.log('长按触发了！', event.currentTarget, progressElement);
+            progressElement.style.setProperty('--progress-width', `${currentProgress}%`);
+          }
+        
+          clearInterval(timeoutId!); 
+          timeoutId = setInterval(() => {
+            currentProgress += (100 / longPressTime) * 50; // 5秒 = 5000ms，每次更新增加的宽度
+            if (progressElement) {
+              progressElement.style.setProperty('--progress-width', `${currentProgress}%`);
+            }
+            // 当进度条满了，触发点击事件
+            if (currentProgress >= 100) {
+              clearInterval(timeoutId!);
+              console.log('点击触发了');
+              if (e.jumpToScene) {
+                changeScene(e.jump, e.text);
+              } else {
+                jmp(e.jump);
+              }
+              WebGAL.gameplay.performController.unmountPerform('choose');
+            }
+          }, 50); // 每50毫秒更新一次
+        };
+
+        const handleMouseUp = () => {
+          if (!enable) return;
+          if (!isLongPressTrigger) return;
+          clearInterval(timeoutId!); 
+          timeoutId = setInterval(() => {
+            currentProgress -= decreaseWidth; // 每次减少指定的速度
+            if (currentProgress <= 0) {
+              currentProgress = 0; // 确保不会小于0
+              clearInterval(timeoutId!); // 停止减少
+              console.log('进度条复位到0，停止检测');
+            }
+            if (progressElement) {
+              progressElement.style.setProperty('--progress-width', `${currentProgress}%`);
+            }
+          }, 50);
+        };
+
         const onClick = enable
           ? () => {
+              if (isLongPressTrigger) return;
               playSeClick();
               if (e.jumpToScene) {
                 changeScene(e.jump, e.text);
@@ -106,9 +170,15 @@ function Choose(props: { chooseOptions: ChooseOption[] }) {
             }
           : () => {};
         return (
-          <div className={applyStyle('Choose_item_outer', styles.Choose_item_outer)} key={e.jump + i}>
+          <div 
+            className={applyStyle('Choose_item_outer', styles.Choose_item_outer)} 
+            key={e.jump + i} 
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}>
             <div className={className} style={{ fontFamily: font }} onClick={onClick} onMouseEnter={playSeEnter}>
-              {e.text}
+              {showText}
+              {isLongPressTrigger && (<div className={applyStyle('Progress_bar', styles.Progress_bar)}/>)}
             </div>
           </div>
         );
