@@ -18,7 +18,7 @@ export const isGuiding = (sentence: ISentence): IPerform => {
         duration: 0,
         isHoldOn: false,
         stopFunction: () => {},
-        blockingNext: () => false,
+        blockingNext: () => true,
         blockingAuto: () => true,
         stopTimeout: undefined, // 暂时不用，后面会交给自动清除
     };
