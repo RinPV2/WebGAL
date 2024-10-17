@@ -918,6 +918,22 @@ export default class PixiStage {
     PIXI.utils.clearTextureCache();
   }
 
+  /**
+   * 通过 key 更新 metadata
+   * @param key
+   */
+  public refreshMetadataByKey(key: string) {
+    const indexFig = this.figureObjects.findIndex((e) => e.key === key);
+    if (indexFig >= 0){
+      const metadata = this.getFigureMetadataByKey(key);
+      if (metadata) {
+        if (metadata.zIndex && metadata.zIndex > 0) {
+          this.figureObjects[indexFig].pixiContainer.zIndex = metadata.zIndex;
+        }
+      }
+    }
+  }
+
   private updateL2dMotionByKey(target: string, motion: string) {
     const figureTargetIndex = this.live2dFigureRecorder.findIndex((e) => e.target === target);
     if (figureTargetIndex >= 0) {

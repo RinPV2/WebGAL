@@ -206,7 +206,7 @@ const stageSlice = createSlice({
       if (action.payload[3]) {
         if (state.figureMetaData[action.payload[0]]) delete state.figureMetaData[action.payload[0]];
       } else {
-        console.log('yeah');
+        console.log('yeah', action.payload);
         // 初始化对象
         if (!state.figureMetaData[action.payload[0]]) {
           state.figureMetaData[action.payload[0]] = {};
