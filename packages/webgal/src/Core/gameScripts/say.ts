@@ -2,7 +2,7 @@ import { ISentence } from '@/Core/controller/scene/sceneInterface';
 import { IPerform } from '@/Core/Modules/perform/performInterface';
 import { playVocal } from './vocal';
 import { webgalStore } from '@/store/store';
-import { setStage } from '@/store/stageReducer';
+import { setStage, stageActions } from '@/store/stageReducer';
 import { useTextDelay } from '@/hooks/useTextOptions';
 import { getRandomPerformName, PerformController } from '@/Core/Modules/perform/performController';
 import { getSentenceArgByKey } from '@/Core/util/getSentenceArg';
@@ -11,6 +11,7 @@ import { WebGAL } from '@/Core/WebGAL';
 import { compileSentence } from '@/Stage/TextBox/TextBox';
 import { performMouthAnimation } from '@/Core/gameScripts/vocal/vocalAnimation';
 import { match } from '@/Core/util/match';
+import { logger } from '../util/logger';
 
 /**
  * 进行普通对话的显示
@@ -24,10 +25,32 @@ export const say = (sentence: ISentence): IPerform => {
   let dialogKey = Math.random().toString(); // 生成一个随机的key
   let dialogToShow = sentence.content; // 获取对话内容
   const isConcat = getSentenceArgByKey(sentence, 'concat'); // 是否是继承语句
-  const isNotend = getSentenceArgByKey(sentence, 'notend') as boolean; // 是否有 notend 参数
+  const isNotend = getSentenceArgByKey(sentence, 'concat') as boolean; // 是否有 notend 参数
   const speaker = getSentenceArgByKey(sentence, 'speaker'); // 获取说话者
   const clear = getSentenceArgByKey(sentence, 'clear'); // 是否清除说话者
   const vocal = getSentenceArgByKey(sentence, 'vocal'); // 是否播放语音
+  const figureId = getSentenceArgByKey(sentence, 'figureId'); // 是否有立绘
+
+  // 如果有指定的 figureId，那么就设置 figureId
+  if (figureId && speaker && speaker !== '') {
+    WebGAL.gameplay.pixiStage?.setSpeaker2Figure(speaker as string, figureId as string);
+  }
+  // 把说话人的立绘移到最前
+  if (speaker && speaker !== '') {
+    const figureKey = WebGAL.gameplay.pixiStage?.getSpeaker2Figure(speaker as string);
+    if (figureKey) {
+      logger.info('将立绘置于最前', figureKey);
+      const figureMetaData = webgalStore.getState().stage.figureMetaData
+      let maxZIndex = 0
+      Object.keys(figureMetaData).forEach((key) => {
+        const metaData = figureMetaData[key];
+        if (metaData.zIndex !== undefined) {
+          maxZIndex = Math.max(maxZIndex, metaData.zIndex)
+        }
+      });
+      dispatch(stageActions.setFigureMetaData([figureKey, 'zIndex', maxZIndex + 1, false]));
+      }
+  }
 
   // 如果是concat，那么就继承上一句的key，并且继承上一句对话。
   if (isConcat) {

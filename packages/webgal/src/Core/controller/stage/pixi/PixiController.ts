@@ -71,6 +71,7 @@ export default class PixiStage {
   private figureObjects: Array<IStageObject> = [];
   private readonly backgroundContainer: PIXI.Container;
   private backgroundObjects: Array<IStageObject> = [];
+  private speaker2Figure: Record<string, string> = {};
 
   // 注册到 Ticker 上的函数
   private stageAnimations: Array<IStageAnimationObject> = [];
@@ -877,6 +878,14 @@ export default class PixiStage {
     return [...this.figureObjects, ...this.backgroundObjects];
   }
 
+  public setSpeaker2Figure(speaker: string, key: string) {
+    this.speaker2Figure[speaker] = key;
+  }
+
+  public getSpeaker2Figure(speaker: string) {
+    return this.speaker2Figure[speaker];
+  }
+  
   /**
    * 根据 key 删除舞台上的对象
    * @param key
