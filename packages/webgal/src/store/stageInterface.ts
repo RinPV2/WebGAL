@@ -108,12 +108,19 @@ export interface IRunPerform {
 export interface ILive2DMotion {
   target: string;
   motion: string;
+  overrideBounds?: [number, number, number, number];
 }
 
 export interface ILive2DExpression {
   target: string;
   expression: string;
 }
+
+export interface IFigureMetadata {
+  zIndex?: number;
+}
+
+type figureMetaData = Record<string, IFigureMetadata>;
 
 /**
  * @interface IStageState 游戏舞台数据接口
@@ -159,6 +166,7 @@ export interface IStageState {
   isDisableTextbox: boolean;
   replacedUIlable: Record<string, string>;
   enableEarthquake: boolean;
+  figureMetaData: figureMetaData;
 }
 
 /**
