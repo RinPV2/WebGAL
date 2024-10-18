@@ -885,7 +885,27 @@ export default class PixiStage {
   public getSpeaker2Figure(speaker: string) {
     return this.speaker2Figure[speaker];
   }
-  
+
+  public muteEveryoneWithoutId(id: string) {
+    for (const speaker in this.speaker2Figure) {
+      const figureKey = this.speaker2Figure[speaker];
+      const figure = this.figureObjects.find((fig) => fig.key === figureKey);
+      if (figure) {
+        if (figure.key !== id) {
+          figure.pixiContainer.grayMute(true);
+        } else {
+          figure.pixiContainer.grayMute(false);
+        }
+      }
+    }
+  }
+
+  public muteEveryone(value: boolean) {
+    for (const figure of this.figureObjects) {
+      figure.pixiContainer.grayMute(value);
+    }
+  }
+
   /**
    * 根据 key 删除舞台上的对象
    * @param key
@@ -933,7 +953,7 @@ export default class PixiStage {
    */
   public refreshMetadataByKey(key: string) {
     const indexFig = this.figureObjects.findIndex((e) => e.key === key);
-    if (indexFig >= 0){
+    if (indexFig >= 0) {
       const metadata = this.getFigureMetadataByKey(key);
       if (metadata) {
         if (metadata.zIndex && metadata.zIndex > 0) {

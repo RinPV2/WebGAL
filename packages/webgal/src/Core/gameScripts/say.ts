@@ -35,21 +35,24 @@ export const say = (sentence: ISentence): IPerform => {
   if (figureId && speaker && speaker !== '') {
     WebGAL.gameplay.pixiStage?.setSpeaker2Figure(speaker as string, figureId as string);
   }
-  // 把说话人的立绘移到最前
+  // 把说话人的立绘移到最前,再把其他所有人都mute了
   if (speaker && speaker !== '') {
     const figureKey = WebGAL.gameplay.pixiStage?.getSpeaker2Figure(speaker as string);
     if (figureKey) {
-      logger.info('将立绘置于最前', figureKey);
-      const figureMetaData = webgalStore.getState().stage.figureMetaData
-      let maxZIndex = 0
+      logger.info(`[say] ${speaker} is speaking, move ${figureKey} to front`);
+      WebGAL.gameplay.pixiStage?.muteEveryoneWithoutId(figureKey);
+      const figureMetaData = webgalStore.getState().stage.figureMetaData;
+      let maxZIndex = 0;
       Object.keys(figureMetaData).forEach((key) => {
         const metaData = figureMetaData[key];
         if (metaData.zIndex !== undefined) {
-          maxZIndex = Math.max(maxZIndex, metaData.zIndex)
+          maxZIndex = Math.max(maxZIndex, metaData.zIndex);
         }
       });
       dispatch(stageActions.setFigureMetaData([figureKey, 'zIndex', maxZIndex + 1, false]));
-      }
+    }
+  } else {
+    WebGAL.gameplay.pixiStage?.muteEveryone(false);
   }
 
   // 如果是concat，那么就继承上一句的key，并且继承上一句对话。

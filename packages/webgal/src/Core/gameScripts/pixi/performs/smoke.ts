@@ -57,15 +57,15 @@ const smokeEffect = (particleCount: number) => {
       // 根据index旋转
       switch (index % 4) {
         case 0:
-          particle.rotation += 0.0001 * delta;
+          particle.rotation += 0.00001 * delta;
           break;
         case 1:
-          particle.rotation -= 0.0005 * delta;
+          particle.rotation -= 0.00005 * delta;
           break;
         case 2:
           break;
         case 3:
-          particle.rotation -= 0.0002 * delta;
+          particle.rotation -= 0.00002 * delta;
           break;
       }
     }

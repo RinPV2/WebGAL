@@ -4,6 +4,7 @@ import { ReflectionFilter } from '@pixi/filter-reflection';
 import { GlitchFilter } from '@pixi/filter-glitch';
 import { RGBSplitFilter } from '@pixi/filter-rgb-split';
 import { GodrayFilter } from '@pixi/filter-godray';
+import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import * as PIXI from 'pixi.js';
 import {
   getOrCreateShockwaveFilterImpl,
@@ -15,6 +16,7 @@ import {
   getRadiusAlphaFilter,
   setRadiusAlphaFilter,
 } from '@/Core/controller/stage/pixi/shaders/RadiusAlphaFilter';
+import { t } from 'i18next';
 
 export class WebGALPixiContainer extends PIXI.Container {
   public containerFilters = new Map<string, PIXI.Filter>();
@@ -22,10 +24,12 @@ export class WebGALPixiContainer extends PIXI.Container {
   private baseY = 0;
 
   private alphaFilter = new PIXI.filters.AlphaFilter(1);
+  private adjustFilter = new AdjustmentFilter();
 
   public constructor() {
     super();
     this.addFilter(this.alphaFilter);
+    this.addFilter(this.adjustFilter);
   }
 
   public get alphaFilterVal() {
@@ -34,6 +38,14 @@ export class WebGALPixiContainer extends PIXI.Container {
 
   public set alphaFilterVal(value: number) {
     this.alphaFilter.alpha = value;
+  }
+
+  public grayMute(value: boolean) {
+    if (value) {
+      this.adjustFilter.brightness = 0.3;
+    } else {
+      this.adjustFilter.brightness = 1;
+    }
   }
 
   public addFilter(filter: PIXI.Filter) {

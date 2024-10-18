@@ -11,20 +11,20 @@
       "x": -100,
       "y": 0
     },
-    "duration": 250
+    "duration": 200
   },
   {
     "position": {
       "x": 100,
       "y": 0
     },
-    "duration": 500
+    "duration": 400
   },
   {
     "position": {
       "x": 0,
       "y": 0
     },
-    "duration": 250
+    "duration": 200
   }
 ]
