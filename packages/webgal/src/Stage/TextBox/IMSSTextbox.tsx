@@ -108,6 +108,7 @@ export default function IMSSTextbox(props: ITextboxProps) {
       let style = '';
       let tips = '';
       let style_alltext = '';
+      let show_glow = false;
       if (en.enhancedValue) {
         const data = en.enhancedValue;
         for (const dataElem of data) {
@@ -122,6 +123,8 @@ export default function IMSSTextbox(props: ITextboxProps) {
             case 'style-alltext':
               style_alltext = value;
               break;
+            case 'glow':
+              show_glow = true;
           }
         }
       }
@@ -145,10 +148,10 @@ export default function IMSSTextbox(props: ITextboxProps) {
             key={currentDialogKey + index}
             style={{ animationDelay: `${delay}ms`, animationDuration: `${textDuration}ms` }}
           >
-            <span className={styles.zhanwei + styleAllText}>
+            <span className={`${styles.zhanwei} ${styleAllText} ${show_glow ? styles.show_for_glow : ''}`}>
               {e}
-              <span className={applyStyle('outer', styles.outer) + styleClassName + styleAllText}>{e}</span>
-              {isUseStroke && <span className={applyStyle('inner', styles.inner) + styleAllText}>{e}</span>}
+              <span className={`${applyStyle('outer', styles.outer)} ${styleClassName} ${styleAllText} ${show_glow ? styles.hide_for_glow : ''}`}>{e}</span>
+              {isUseStroke && <span className={`${applyStyle('inner', styles.inner)} ${styleAllText} ${show_glow ? styles.hide_for_glow : ''}`}>{e}</span>}
             </span>
           </span>
         );
@@ -161,10 +164,10 @@ export default function IMSSTextbox(props: ITextboxProps) {
           key={currentDialogKey + index}
           style={{ animationDelay: `${delay}ms`, position: 'relative' }}
         >
-          <span className={styles.zhanwei + styleAllText}>
+          <span className={`${styles.zhanwei} ${styleAllText} ${show_glow ? styles.show_for_glow : ''}`}>
             {e}
-            <span className={applyStyle('outer', styles.outer) + styleClassName + styleAllText}>{e}</span>
-            {isUseStroke && <span className={applyStyle('inner', styles.inner) + styleAllText}>{e}</span>}
+            <span className={`${applyStyle('outer', styles.outer)} ${styleClassName} ${styleAllText} ${show_glow ? styles.hide_for_glow : ''}`}>{e}</span>
+            {isUseStroke && <span className={`${applyStyle('inner', styles.inner)} ${styleAllText} ${show_glow ? styles.hide_for_glow : ''}`}>{e}</span>}
           </span>
         </span>
       );
@@ -250,7 +253,7 @@ export default function IMSSTextbox(props: ITextboxProps) {
               style={{
                 fontSize,
                 flexFlow: 'column',
-                overflow: 'hidden',
+                overflow: 'visible',
                 paddingLeft: '0.1em',
                 lineHeight: '3em', //不加的话上半拼音可能会被截断，同时保持排版整齐
               }}

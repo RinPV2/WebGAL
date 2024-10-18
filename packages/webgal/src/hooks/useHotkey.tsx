@@ -205,7 +205,10 @@ export function useSkip() {
   // 判断按键是否为ctrl
   const isCtrlKey = useCallback((e) => e.keyCode === 17, []);
   const handleCtrlKeydown = useCallback((e) => {
-    if(GUIStore.current.isGuiding && GUIStore.current.showBacklogIcon) return; // 引导中不操作
+    if(GUIStore.current.isGuiding) {
+      stopFast();
+      return;
+    } // 引导中不操作
     if (isCtrlKey(e) && isGameActive()) {
       startFast();
     }

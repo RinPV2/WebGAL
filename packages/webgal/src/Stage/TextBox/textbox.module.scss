@@ -108,6 +108,15 @@ $height: 330px;
   position: relative;       /* 保持相对定位 */
 }
 
+.hide_for_glow {
+  display: none;
+}
+
+.show_for_glow {
+  color: #fffef8;
+  animation: glow_inner 3s infinite;
+}
+
 //
 //.TextBox_textElement_start::before{
 //  animation: TextDelayShow 700ms ease-out forwards;
@@ -227,4 +236,33 @@ $height: 330px;
 .text {
   line-height: 1.9em;
   overflow: hidden;
+}
+
+@keyframes glow_inner {
+  0% {
+    text-shadow: 
+      0 0 0 #FFD700, /* 内层的较小的光晕 */
+      0 0 20px #E2C027, /* 中间层的橙黄色光晕 */
+      0 0 30px #FC0,    /* 外层的金黄色光晕 */
+      1px 1px 3px rgba(0, 0, 0, 0.75), /* 边缘的黑色阴影 */
+      0 5px 15px rgba(255, 215, 56, 0.5); /* 更大范围的金黄色光晕 */
+  }
+  
+  50% {
+    text-shadow: 
+      0 0 20px #FFD700, /* 内层更亮的光晕 */
+      0 0 40px #E2C027, /* 中间层更亮的光晕 */
+      0 0 60px #FCC307,    /* 外层更亮的金黄色光晕 */
+      1px 1px 5px rgba(0, 0, 0, 0.75), /* 边缘的阴影稍微扩散 */
+      0 10px 30px rgba(255, 215, 56, 0.75); /* 更大范围的金黄色光晕 */
+  }
+  
+  100% {
+    text-shadow: 
+      0 0 0 #FFD700, /* 恢复内层光晕 */
+      0 0 20px #E2C027, /* 恢复中间层光晕 */
+      0 0 30px #FC0,    /* 恢复外层光晕 */
+      1px 1px 3px rgba(0, 0, 0, 0.75), /* 恢复黑色阴影 */
+      0 5px 15px rgba(255, 215, 56, 0.5); /* 恢复大范围光晕 */
+  }
 }
