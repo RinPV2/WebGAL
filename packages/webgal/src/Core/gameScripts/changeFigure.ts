@@ -197,6 +197,7 @@ export function changeFigure(sentence: ISentence): IPerform {
 
     function applyDefaultTransform() {
       // 应用默认的
+      duration = 0;
       const frame = {};
       animationObj = generateTransformAnimationObj(key, frame as ITransform & { duration: number }, duration);
       // 因为是切换，必须把一开始的 alpha 改为 0
