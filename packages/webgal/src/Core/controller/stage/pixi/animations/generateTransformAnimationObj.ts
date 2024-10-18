@@ -14,7 +14,7 @@ export function generateTransformAnimationObj(
   const transformState = webgalStore.getState().stage.effects;
   const targetEffect = transformState.find((effect) => effect.target === target);
   applyFrame.duration = 500;
-  if (duration && typeof duration === 'number') {
+  if (duration!==null  && typeof duration === 'number') {
     applyFrame.duration = duration;
   }
   animationObj = [applyFrame];
