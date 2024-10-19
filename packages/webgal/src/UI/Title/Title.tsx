@@ -18,14 +18,15 @@ import * as PIXI from 'pixi.js';
 import { WebGAL } from '@/Core/WebGAL';
 import { SCREEN_CONSTANTS } from '@/Core/util/constants';
 import { logger } from '@/Core/util/logger';
+import { GlowFilter } from '@pixi/filter-glow';
 /**
  * 标题页
  * @constructor
  */
 const Title: FC = () => {
   const effectsContainer = useRef<HTMLDivElement | null>(null);
-  const scalePreset = 0.15;
-  const cherryBlossomsSpeed = 3;
+  const scalePreset = 0.07;
+  const cherryBlossomsSpeed = 3.5;
   const stageWidth = SCREEN_CONSTANTS.width;
   const stageHeight = SCREEN_CONSTANTS.height;
   const userDataState = useSelector((state: RootState) => state.userData);
@@ -41,7 +42,7 @@ const Title: FC = () => {
   useConfigData(); // 监听基础ConfigData变化
 
   useEffect(() => {
-      if(GUIState.showTitle){
+    if (GUIState.showTitle) {
       // 初始化 PIXI 应用程序
       const app = new PIXI.Application({
         width: stageWidth,
@@ -54,75 +55,76 @@ const Title: FC = () => {
         effectsContainer.current.appendChild(app.view);
       }
 
-      // 添加简单的特效 (如粒子效果，雪花效果等)
+      // 添加粒子容器
       const container = new PIXI.ParticleContainer();
-      app.stage.addChild(container);
-
-
-      const texture = PIXI.Texture.from('./game/tex/cherryBlossoms.png');
-      // コンテナを中央に移動
-      // 将容器移到中心
       container.x = app.screen.width / 2;
       container.y = app.screen.height / 2;
       container.pivot.x = container.width / 2;
       container.pivot.y = container.height / 2;
-      // ズームを調整
-      // 调整缩放
       container.scale.x = 1;
       container.scale.y = 1;
-      // container.rotation = -0.2;
-      const bunnyList: any = [];
-      // アニメーションの更新を監視
-      // 监听动画更新
-      function tickerFn(delta: number) {
-        // 桜の位置を制御するために使用される長さと幅を取得します
-        // 获取长宽，用于控制花出现位置
-        // オブジェクトを作成
-        // 创建对象
-        const bunny = new PIXI.Sprite(texture);
-        let scaleRand = 0.25;
+      app.stage.addChild(container);
 
-        bunny.scale.x = scalePreset * scaleRand;
-        bunny.scale.y = scalePreset * scaleRand;
-        // アンカーポイントを設定
-        // 设置锚点
-        bunny.anchor.set(0.5);
-        // ランダムな桜の位置
-        // 随机花位置
-        bunny.x = Math.random() * stageWidth - 0.5 * stageWidth;
-        bunny.y = 0 - 0.5 * stageHeight;
-        // @ts-ignore
-        bunny['dropSpeed'] = Math.random() * 5;
-        // @ts-ignore
-        bunny['acc'] = Math.random();
+      const texture = PIXI.Texture.from('./game/tex/cherryBlossoms.png');
+      const bunnyList: PIXI.Sprite[] = []; // 存储所有花瓣对象
+      const maxBunnyCount = 50; // 控制最大花瓣数
+
+      // 生成花瓣
+      for (let i = 0; i < maxBunnyCount; i++) {
+        const bunny = new PIXI.Sprite(texture);
+        resetParticle(bunny);
         container.addChild(bunny);
         bunnyList.push(bunny);
-
-        let count = 0;
-        for (const e of bunnyList) {
-          count++;
-          const randomNumber = Math.random();
-          e['dropSpeed'] = e['acc'] * 0.01 + e['dropSpeed'];
-          e.y += delta * cherryBlossomsSpeed * e['dropSpeed'] * 0.3 + 0.7;
-          const addX = count % 2 === 0;
-          if (addX) {
-            e.x += delta * randomNumber * 0.5;
-            e.rotation += delta * randomNumber * 0.03;
-          } else {
-            e.x -= delta * randomNumber * 0.5;
-            e.rotation -= delta * randomNumber * 0.03;
-          }
-        }
-        // 同じ画面上の桜の数を制御します
-        // 控制同屏花数
-        if (bunnyList.length >= 200) {
-          bunnyList.shift()?.destroy();
-          container.removeChild(container.children[0]);
-        }
       }
 
+      function resetParticle(particle: PIXI.Sprite) {
+        let scaleRandX = 1 - 0.9 * Math.random();
+        let scaleRandY = (1 - (0.3 - 0.6 * Math.random())) * scaleRandX;
+        particle.scale.x = scalePreset * scaleRandX;
+        particle.scale.y = scalePreset * scaleRandY;
+        particle.anchor.set(0.5);
+        particle.alpha = 1 - 0.2 * scaleRandX;
+        particle.x = Math.random() * stageWidth - 0.5 * stageWidth;
+        particle.y = 0 - (0.5 + Math.random() * 0.3) * stageHeight;
+        (particle as any).dropSpeed = (1 - Math.random() * 0.5) * scaleRandX * scaleRandY * 0.01 + 0.002;
+      }
+
+      // 更新花瓣动画
+      function tickerFn(delta: number) {
+        let windStrength = (0.3 + Math.random()) * 0.3; // 模拟风的强度
+        bunnyList.forEach((e, index) => {
+          e.y += delta * cherryBlossomsSpeed * (e as any).dropSpeed + (Math.sin(e.y / 100 + index) + 0.3) * windStrength * 0.2 * Math.random();
+
+          // 使用 Math.sin 模拟风的左右摆动效果
+          e.x += windStrength * (Math.sin(e.y / 100 + index) + Math.cos(e.y / 50) * 0.5 * Math.random()) * e.scale.x / scalePreset;
+
+          // 添加旋转效果
+          const randomNumber = Math.random() * 1000;
+          const addX = Math.random() < 0.5;
+          if (addX) {
+            e.rotation += 2;
+            // e.alpha -= 0.05 * delta;
+          } else {
+            e.rotation += 2;
+            // e.alpha += 0.1 * delta;
+          }
+
+          // 检查是否到达屏幕底部，重置位置
+          if (e.y > stageHeight / 2) {
+            e.x = Math.random() * stageWidth - 0.5 * stageWidth;
+            e.y = 0 - (0.5 + Math.random() * 0.3) * stageHeight;
+          }
+          if (e.x > stageWidth / 2) {
+            e.x -= stageWidth * 1.1;
+          }
+          if (e.x < -stageWidth / 2) {
+            e.x += stageWidth * 1.1;
+          }
+        })
+      }
+
+      // 每一帧更新特效
       app.ticker.add(() => {
-        // 每一帧更新特效，移动矩形
         tickerFn(app.ticker.deltaMS);
       });
 
@@ -132,6 +134,7 @@ const Title: FC = () => {
       };
     }
   }, [GUIState.showTitle]);
+
 
   return (
     <>
