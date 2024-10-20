@@ -84,8 +84,8 @@ const Title: FC = () => {
         particle.scale.y = scalePreset * scaleRandY;
         particle.anchor.set(0.5);
         particle.alpha = 1 - 0.2 * scaleRandX;
-        particle.x = Math.random() * stageWidth - 0.5 * stageWidth;
-        particle.y = 0 - (0.5 + Math.random() * 0.3) * stageHeight;
+        particle.x = (Math.random() - 0.5) * stageWidth;
+        particle.y = (Math.random() - 0.4) * stageHeight;
         (particle as any).dropSpeed = (1 - Math.random() * 0.5) * scaleRandX * scaleRandY * 0.01 + 0.002;
       }
 
