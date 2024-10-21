@@ -14,6 +14,7 @@ import { dumpSavesToStorage } from '@/Core/controller/storage/savesController';
  * @param index 游戏的档位
  */
 export const saveGame = (index: number) => {
+  if (index < 0) index = 200 - index;
   const saveData: ISaveData = generateCurrentStageData(index);
   webgalStore.dispatch(saveActions.saveGame({ index, saveData }));
   dumpSavesToStorage(index, index);

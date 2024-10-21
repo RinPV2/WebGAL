@@ -41,6 +41,8 @@ import { info } from '../gameScripts/info';
 import { backFromBook } from '../gameScripts/backFromBook';
 import en from '@/translations/en';
 import { enableEarthquake } from '../gameScripts/enableEarthquake';
+import { hideSave } from '../gameScripts/hideSave';
+import { hideLoad } from '../gameScripts/hideLoad';
 
 export const SCRIPT_TAG_MAP = defineScripts({
   intro: ScriptConfig(commandType.intro, intro),
@@ -79,6 +81,8 @@ export const SCRIPT_TAG_MAP = defineScripts({
   info: ScriptConfig(commandType.info, info),
   backFromBook: ScriptConfig(commandType.backFromBook, backFromBook, { next: false }),
   enableEarthquake: ScriptConfig(commandType.enableEarthquake, enableEarthquake, { next: true }),
+  hideSave: ScriptConfig(commandType.hideSave, hideSave, { next: true }),
+  hideLoad: ScriptConfig(commandType.hideLoad, hideLoad, { next: true }),
   // if: ScriptConfig(commandType.if, undefined, { next: true }),
 });
 

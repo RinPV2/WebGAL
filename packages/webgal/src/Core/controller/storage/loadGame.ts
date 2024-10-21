@@ -19,6 +19,7 @@ import { WebGAL } from '@/Core/WebGAL';
  * @param index 要读取的存档的档位
  */
 export const loadGame = (index: number) => {
+  if (index < 0) index = 200 - index;
   const userDataState = webgalStore.getState().saveData;
   // 获得存档文件
   const loadFile: ISaveData = userDataState.saveData[index];

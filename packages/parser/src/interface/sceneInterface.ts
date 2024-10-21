@@ -43,6 +43,8 @@ export enum commandType {
   info, // 提醒信息框
   backFromBook, // 从圣典返回
   enableEarthquake, // 启用地震
+  hideSave, // 隐藏式存档
+  hideLoad, // 隐藏式读档
 }
 
 /**

@@ -1,4 +1,4 @@
-import {commandType} from '../interface/sceneInterface';
+import { commandType } from '../interface/sceneInterface';
 
 export const SCRIPT_CONFIG = [
   { scriptString: 'intro', scriptType: commandType.intro },
@@ -34,7 +34,12 @@ export const SCRIPT_CONFIG = [
   { scriptString: 'showBacklogIcon', scriptType: commandType.showBacklogIcon },
   { scriptString: 'isGuiding', scriptType: commandType.isGuiding },
   { scriptString: 'backFromBook', scriptType: commandType.backFromBook },
-  { scriptString: 'enableEarthquake', scriptType: commandType.enableEarthquake },
+  {
+    scriptString: 'enableEarthquake',
+    scriptType: commandType.enableEarthquake,
+  },
+  { scriptString: 'hideSave', scriptType: commandType.hideSave },
+  { scriptString: 'hideLoad', scriptType: commandType.hideLoad },
 ];
 export const ADD_NEXT_ARG_LIST = [
   commandType.bgm,

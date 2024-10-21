@@ -96,11 +96,11 @@ export const BottomControlPanel = () => {
               style={{ fontSize: big_fontSize }}
               onClick={() => {
                 playSeClick();
-                if(GUIStore.showBook){
+                if (GUIStore.showBook) {
                   setComponentVisibility('showBook', false);
                   loadGame(0);
                 }
-                else{
+                else {
                   setComponentVisibility('showBook', true);
                   //中断所有演出
                   stopAllPerform();
@@ -115,11 +115,11 @@ export const BottomControlPanel = () => {
               onMouseEnter={playSeEnter}
             >
               <BookOpen
-                className={styles.button} 
-                theme="outline" 
-                size={big_size} 
-                fill="#f5f5f7" 
-                strokeWidth={strokeWidth} 
+                className={styles.button}
+                theme="outline"
+                size={big_size}
+                fill="#f5f5f7"
+                strokeWidth={strokeWidth}
               />
               <span className={styles.button_text}>{t('buttons.book')}</span>
             </span>
@@ -171,7 +171,6 @@ export const BottomControlPanel = () => {
               onClick={() => {
                 setComponentVisibility('showBacklog', true);
                 setComponentVisibility('showTextBox', false);
-                setComponentVisibility('isGuiding', false);
                 playSeClick();
               }}
               onMouseEnter={playSeEnter}
@@ -183,7 +182,7 @@ export const BottomControlPanel = () => {
                 fill="#f5f5f7"
                 strokeWidth={strokeWidth}
               />
-              <span className={`${styles.button_text} ${GUIStore.isGuiding ? styles.glowEffect : ''}`}>{t('buttons.backlog')}</span>
+              <span className={styles.button_text}>{t('buttons.backlog')}</span>
             </span>
           )}
           <span
@@ -273,20 +272,21 @@ export const BottomControlPanel = () => {
             <span className={styles.button_text}>{t('buttons.quicklyLoad')}</span>
             <div className={styles.fastSlPreview + ' ' + styles.fastLPreview}>{fastSlPreview}</div>
           </span> */}
-          <span
+          {GUIStore.showBacklogIcon && (<span
             className={styles.singleButton}
             style={{ fontSize }}
             onClick={() => {
               setMenuPanel(MenuPanelTag.Save);
               setComponentVisibility('showMenuPanel', true);
+              setComponentVisibility('isGuiding', false);
               playSeClick();
             }}
             onMouseEnter={playSeEnter}
           >
             <Save className={styles.button} theme="outline" size={size} fill="#f5f5f7" strokeWidth={strokeWidth} />
-            <span className={styles.button_text}>{t('buttons.save')}</span>
-          </span>
-          <span
+            <span className={`${styles.button_text} ${GUIStore.isGuiding ? styles.glowEffect : ''}`}>{t('buttons.save')}</span>
+          </span>)}
+          {GUIStore.showBacklogIcon && (<span
             className={styles.singleButton}
             style={{ fontSize }}
             onClick={() => {
@@ -304,7 +304,7 @@ export const BottomControlPanel = () => {
               strokeWidth={strokeWidth}
             />
             <span className={styles.button_text}>{t('buttons.load')}</span>
-          </span>
+          </span>)}
           <span
             className={styles.singleButton}
             style={{ fontSize }}
@@ -336,7 +336,7 @@ export const BottomControlPanel = () => {
                 leftFunc: () => {
                   backToTitle();
                 },
-                rightFunc: () => {},
+                rightFunc: () => { },
               });
             }}
             onMouseEnter={playSeEnter}
