@@ -13,11 +13,6 @@ import { IRunPerform } from '@/store/stageInterface';
  * 进行下一句
  */
 export const nextSentence = () => {
-  /**
-   * 发送 “发生点击下一句” 事件。
-   */
-  WebGAL.events.userInteractNext.emit();
-
   // 如果当前显示标题，那么不进行下一句
   const GUIState = webgalStore.getState().GUI;
   if (GUIState.showTitle) {
@@ -36,7 +31,10 @@ export const nextSentence = () => {
     logger.warn('next 被阻塞！');
     return;
   }
-
+  /**
+   * 发送 “发生点击下一句” 事件。
+   */
+  WebGAL.events.userInteractNext.emit();
   // 检查是否处于演出完成状态，不是则结束所有普通演出（保持演出不算做普通演出）
   let allSettled = true;
   WebGAL.gameplay.performController.performList.forEach((e) => {
