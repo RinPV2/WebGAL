@@ -93,7 +93,7 @@ export const intro = (sentence: ISentence): IPerform => {
     isBlocking = false;
   }, baseDuration);
 
-  let timeout = setTimeout(() => {});
+  let timeout = setTimeout(() => { });
   const toNextIntroElement = () => {
     const introContainer = document.getElementById('introContainer');
     // 由于用户操作，相当于时间向前推进，这时候更新这个演出的预计完成时间
@@ -152,7 +152,7 @@ export const intro = (sentence: ISentence): IPerform => {
   ));
   const intro = (
     <div style={introContainerStyle}>
-      <div style={{ padding: '3em 4em 3em 4em' }}>{showIntro}</div>
+      <div style={{ padding: '5em 7em', lineHeight: 3 }}>{showIntro}</div>
     </div>
   );
   // eslint-disable-next-line react/no-deprecated
