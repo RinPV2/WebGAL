@@ -8,3 +8,7 @@ GameNum:10;
 GameNum_Double:20;
 GlobalNum:first;
 Package_name:0.0.0.1;
+GlobalFlag_1:first;
+GlobalFlag_2:first;
+GlobalFlag_3:first;
+GlobalFlag_4:first;
