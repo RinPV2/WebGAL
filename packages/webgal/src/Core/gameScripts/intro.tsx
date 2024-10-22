@@ -138,7 +138,7 @@ export const intro = (sentence: ISentence): IPerform => {
   /**
    * 接受 next 事件
    */
-  WebGAL.events.userInteractNext.on(toNextIntroElement);
+  // WebGAL.events.userInteractNext.on(toNextIntroElement);
 
   const showIntro = introArray.map((e, i) => (
     <div
