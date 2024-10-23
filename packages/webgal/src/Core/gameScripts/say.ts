@@ -51,6 +51,7 @@ export const say = (sentence: ISentence): IPerform => {
       });
       dispatch(stageActions.setFigureMetaData([figureKey, 'zIndex', maxZIndex + 1, false]));
     }
+  } else if (isConcat) {
   } else {
     WebGAL.gameplay.pixiStage?.muteEveryone(false);
   }

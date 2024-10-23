@@ -109,6 +109,7 @@ export default function IMSSTextbox(props: ITextboxProps) {
       let tips = '';
       let style_alltext = '';
       let show_glow = false;
+      let sp_font = false;
       if (en.enhancedValue) {
         const data = en.enhancedValue;
         for (const dataElem of data) {
@@ -125,6 +126,8 @@ export default function IMSSTextbox(props: ITextboxProps) {
               break;
             case 'glow':
               show_glow = true;
+            case 'spFont':
+              sp_font = true;
           }
         }
       }
@@ -148,7 +151,7 @@ export default function IMSSTextbox(props: ITextboxProps) {
             key={currentDialogKey + index}
             style={{ animationDelay: `${delay}ms`, animationDuration: `${textDuration}ms` }}
           >
-            <span className={`${styles.zhanwei} ${styleAllText} ${show_glow ? styles.show_for_glow : ''}`}>
+            <span className={`${styles.zhanwei} ${styleAllText} ${show_glow ? styles.show_for_glow : ''} ${sp_font ? styles.special_font : ''}`}>
               {e}
               <span className={`${applyStyle('outer', styles.outer)} ${styleClassName} ${styleAllText} ${show_glow ? styles.hide_for_glow : ''}`}>{e}</span>
               {isUseStroke && <span className={`${applyStyle('inner', styles.inner)} ${styleAllText} ${show_glow ? styles.hide_for_glow : ''}`}>{e}</span>}
@@ -164,7 +167,7 @@ export default function IMSSTextbox(props: ITextboxProps) {
           key={currentDialogKey + index}
           style={{ animationDelay: `${delay}ms`, position: 'relative' }}
         >
-          <span className={`${styles.zhanwei} ${styleAllText} ${show_glow ? styles.show_for_glow : ''}`}>
+          <span className={`${styles.zhanwei} ${styleAllText} ${show_glow ? styles.show_for_glow : ''} ${sp_font ? styles.special_font : ''}`}>
             {e}
             <span className={`${applyStyle('outer', styles.outer)} ${styleClassName} ${styleAllText} ${show_glow ? styles.hide_for_glow : ''}`}>{e}</span>
             {isUseStroke && <span className={`${applyStyle('inner', styles.inner)} ${styleAllText} ${show_glow ? styles.hide_for_glow : ''}`}>{e}</span>}

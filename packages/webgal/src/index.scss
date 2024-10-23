@@ -20,6 +20,11 @@
   src: url("assets/fonts/OPPOSans-R.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: 'SpecialFont';
+  src: url('assets/fonts/MadokaAlbertine-Regular.otf') format('opentype');
+}
+
 .StartButton {
   animation: StartButton_blink 4s infinite;
 }
