@@ -10,13 +10,14 @@
   display: flex;
   position: absolute;
   left: 0;
+  top: 742px;
   min-width: 25%;
   height: 100%;
-  justify-content: center;
+  justify-content: start;
   align-items: flex-start;
   flex-flow: column;
   transition: background 0.75s;
-  padding-left: 120px;
+  padding-left: 377px;
 }
 
 .Title_button {
@@ -32,6 +33,7 @@
   border-radius: 4px;
   transform: skewX(-10deg);
   background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+  height: 60px;
 
   &:hover {
     text-shadow: 0 0 10px rgba(255, 255, 255, 1);

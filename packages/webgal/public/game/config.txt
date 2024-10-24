@@ -2,7 +2,7 @@ Game_name:银心挽歌 ～Moonlit Echoes～;
 Game_key:0f87dstRg;
 Title_img:Start_Bg.png;
 Title_bgm:Title.mp3;
-Game_Logo:WebGalEnter.png;
+Game_Logo:logo_Team.png;
 Debug:true;
 GameNum:10;
 GameNum_Double:20;

@@ -160,9 +160,10 @@ const Title: FC = () => {
           }}
         >
           <div ref={effectsContainer} className={styles.Title_pixi_canvas}></div> {/* 特效层 */}
+          <div className={styles.logo}></div>
           <div className={applyStyle('Title_buttonList', styles.Title_buttonList)}>
             <div
-              className={applyStyle('Title_button', styles.Title_button)}
+              className={styles.Title_button_new}
               onClick={() => {
                 startGame();
                 playSeClick();
@@ -170,9 +171,10 @@ const Title: FC = () => {
               onMouseEnter={playSeEnter}
             >
               <div className={applyStyle('Title_button_text', styles.Title_button_text)}>{t('start.title')}</div>
+              <div className={styles.Title_button_image}></div>
             </div>
             <div
-              className={applyStyle('Title_button', styles.Title_button)}
+              className={styles.Title_button_new}
               onClick={async () => {
                 playSeClick();
                 dispatch(setVisibility({ component: 'showTitle', visibility: false }));
@@ -181,9 +183,10 @@ const Title: FC = () => {
               onMouseEnter={playSeEnter}
             >
               <div className={applyStyle('Title_button_text', styles.Title_button_text)}>{t('continue.title')}</div>
+              <div className={styles.Title_button_image}></div>
             </div>
             <div
-              className={applyStyle('Title_button', styles.Title_button)}
+              className={styles.Title_button_new}
               onClick={() => {
                 playSeClick();
                 dispatch(setVisibility({ component: 'showMenuPanel', visibility: true }));
@@ -192,9 +195,10 @@ const Title: FC = () => {
               onMouseEnter={playSeEnter}
             >
               <div className={applyStyle('Title_button_text', styles.Title_button_text)}>{t('options.title')}</div>
+              <div className={styles.Title_button_image}></div>
             </div>
             <div
-              className={applyStyle('Title_button', styles.Title_button)}
+              className={styles.Title_button_new}
               onClick={() => {
                 playSeClick();
                 dispatch(setVisibility({ component: 'showMenuPanel', visibility: true }));
@@ -203,9 +207,10 @@ const Title: FC = () => {
               onMouseEnter={playSeEnter}
             >
               <div className={applyStyle('Title_button_text', styles.Title_button_text)}>{t('load.title')}</div>
+              <div className={styles.Title_button_image}></div>
             </div>
             <div
-              className={applyStyle('Title_button', styles.Title_button)}
+              className={styles.Title_button_new}
               onClick={() => {
                 playSeClick();
                 dispatch(setVisibility({ component: 'showExtra', visibility: true }));
@@ -213,6 +218,7 @@ const Title: FC = () => {
               onMouseEnter={playSeEnter}
             >
               <div className={applyStyle('Title_button_text', styles.Title_button_text)}>{t('extra.title')}</div>
+              <div className={styles.Title_button_image}></div>
             </div>
           </div>
         </div>

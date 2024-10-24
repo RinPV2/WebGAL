@@ -17,6 +17,17 @@ const starRail = () => {
   container.scale.x = 1;
   container.scale.y = 1;
 
+  const p1 = findTangentPoints(300, -400, 400, 300);
+
+  const graphics = new PIXI.Graphics()
+    .beginFill()
+    .lineStyle(5, 0xffffff, 1)
+    .moveTo(300, -400)
+    .arcTo(p1[0], p1[1], 400, 300, 500)
+    .endFill();
+
+  container.addChild(graphics);
+
   // 随机生成数值函数
   function random(min: number, max: number): number {
     return Math.random() * (max - min) + min;
@@ -35,6 +46,19 @@ const starRail = () => {
     const b = Math.round(255 * f(4));
 
     return (r << 16) + (g << 8) + b;
+  }
+
+  // 找共切点,简化问题圆心在原点
+  function findTangentPoints(x1: number, y1: number, x2: number, y2: number): number[] {
+    const mx = (x1 + x2) / 2;
+    const my = (y1 + y2) / 2;
+    const r = Math.sqrt(x1 * x1 + y1 * y1);
+    const dm = Math.sqrt(mx * mx + my * my);
+    const length = (r * r) / dm;
+    const rx = (mx * length) / dm;
+    const ry = (my * length) / dm;
+    console.log(111, mx, my, dm, length, rx, ry);
+    return [rx, ry];
   }
 
   // 星星类
@@ -99,8 +123,15 @@ const starRail = () => {
       this.graphics.clear();
       this.graphics
         .lineStyle(this.width, this.hsl, this.alpha)
-        .moveTo(this.coordinates[this.coordinates.length - 1][0], this.coordinates[this.coordinates.length - 1][1])
-        .lineTo(this.x, this.y);
+        // .moveTo(this.coordinates[this.coordinates.length - 1][0], this.coordinates[this.coordinates.length - 1][1])
+        // .lineTo(this.x, this.y);
+        .arcTo(
+          this.coordinates[this.coordinates.length - 1][0],
+          this.coordinates[this.coordinates.length - 1][1],
+          this.x,
+          this.y,
+          this.radius,
+        );
       this.graphics.endFill();
     }
 
@@ -118,7 +149,7 @@ const starRail = () => {
         this.alpha += this.alphaDecay;
       }
       this.radius += delta;
-      this.draw();
+      // this.draw();
     }
   }
 

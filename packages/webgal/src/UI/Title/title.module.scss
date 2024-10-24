@@ -8,14 +8,14 @@
 .Title_buttonList {
   display: flex;
   position: absolute;
-  left: 0;
+  top: 90px;
   min-width: 25%;
   height: 100%;
-  justify-content: center;
+  justify-content: start;
   align-items: flex-start;
   flex-flow: column;
   transition: background 0.75s;
-  padding-left: 120px;
+  padding-left: 363px;
 }
 
 .Title_button {
@@ -23,14 +23,27 @@
   text-align: center;
   flex: 0 1 auto;
   cursor: pointer;
-  padding: 1em 2em 1em 2em;
-  margin: 20px 0;
+  margin: 14px 0;
   transition: all 0.33s;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(5px);
-  border-radius: 4px;
-  transform: skewX(-10deg);
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+  background: no-repeat url('./UI_decoration.png');
+  font-size: 92%;
+}
+
+.Title_button_new {
+  font-weight: bold;
+  text-align: center;
+  flex: 0 1 auto;
+  cursor: pointer;
+  margin: 14px 0;
+  transition: all 0.33s;
+  font-size: 92%;
+  &:hover {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 1);
+    padding: 0 0 0 1em;
+    .Title_button_image {
+      opacity: 1;  // 鼠标悬停时显示图片
+    }
+  }
 }
 
 .Title_button:hover {
@@ -70,4 +83,28 @@
   justify-content: center;
   align-items: center;
   background-color: #000; // 背景颜色
+}
+
+.logo{
+  position: fixed;  // 固定位置，确保图片全屏显示
+  top: 0;
+  left: 0;
+  width: 100%;  // 占据整个视口宽度
+  height: 100%; // 占据整个视口高度
+  background-image: url('./logo_background.png');  // 设置背景图片路径
+  background-size: cover;  // 保持图片比例，裁剪超出部分
+  background-position: center;  // 将图片居中
+}
+
+.Title_button_image {
+  background-image: url('./UI_decoration.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+  top: -142%;
+  left: -35%;
+  width: 215%;  // 设置图片的宽度
+  height: 215%;  // 设置图片的高度
+  opacity: 0;  // 默认隐藏图片
+  transition: opacity 0.5s ease;
 }
