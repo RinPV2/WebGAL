@@ -1,25 +1,25 @@
 .infoContainer {
-    position: fixed;
-    left: 50%;
-    top: 10%;
-    transform: translateX(-50%);
-    border-radius: 10px; // 椭圆角效果
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    border: 10px solid rgba(255, 255, 255, 0.2);
-    text-align: center;
-    animation: fadeIn 0.25s ease-in-out;
-    z-index: 999;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: url('./info.png');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  text-align: center;
+  animation: fadeIn 0.25s ease-in-out;
+  z-index: 999;
 }
 
 .infoContainer:empty {
-    display: none;
+  display: none;
 }
 
 @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
