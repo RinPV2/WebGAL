@@ -62,7 +62,7 @@
   display: inline-block;
   color: white;
   font-size: 150%;
-  padding: 0.3em 0.3em 0 0.15em;
+  // padding: 0.3em 0.3em 0 0.15em;
   transition: filter 0.5s;
   cursor: pointer;
   border-radius: 4px;
@@ -71,7 +71,7 @@
 }
 
 .singleButton:hover {
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
 }
 
 .fastSlPreview {
@@ -134,13 +134,13 @@
 
 @keyframes glow_text {
   0% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #227D51, 0 0 20px #227D51;
+    filter: drop-shadow(0 0 15px #ace5ff) drop-shadow(0 0 30px rgba(255, 255, 255, 0.8));
   }
   50% {
-    text-shadow: 0 0 20px #fff, 0 0 30px #227D51, 0 0 40px #227D51, 0 0 50px #227D51;
+    filter: drop-shadow(0 0 5px #ace5ffc8) drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
   }
   100% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #227D51, 0 0 20px #227D51;
+    filter: drop-shadow(0 0 15px #ace5ff) drop-shadow(0 0 30px rgba(255, 255, 255, 0.8));
   }
 }
 
@@ -178,8 +178,68 @@
   display: block;
   width: 218px;  // 图标宽度
   height: 147px;  // 图标高度
-  background: url('./book.png');
+  background: no-repeat url('./book.png');
   background-size: contain;
+  background-blend-mode: multiply;
+}
+
+.title_icon{
+  position: fixed;
+  top: 30px;  // 距离顶部的距离
+  left: 2400px; // 距离左边的距离
+  display: block;
+  width: 100px;  // 图标宽度
+  height: 100px;  // 图标高度
+  background: no-repeat url('./title.png');
+  background-size: contain;
+  background-blend-mode: multiply;
+}
+
+.normal_icon{
+  display: block;
+  width: 126px;  // 图标宽度
+  height: 60px;  // 图标高度
   background-repeat: no-repeat;
   background-blend-mode: multiply;
+  margin-left: -2px;
+}
+
+.hide{
+  background: no-repeat url('./hide.png');
+  background-size: contain;
+}
+
+.backlog{
+  background: no-repeat url('./backlog.png');
+  background-size: contain;
+}
+
+.replay{
+  background: no-repeat url('./replay.png');
+  background-size: contain;
+}
+
+.auto{
+  background: no-repeat url('./auto.png');
+  background-size: contain;
+}
+
+.forward{
+  background: no-repeat url('./forward.png');
+  background-size: contain;
+}
+
+.save{
+  background: no-repeat url('./save.png');
+  background-size: contain;
+}
+
+.load{
+  background: no-repeat url('./load.png');
+  background-size: contain;
+}
+
+.options{
+  background: no-repeat url('./options.png');
+  background-size: contain;
 }

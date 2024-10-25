@@ -116,9 +116,26 @@ export const BottomControlPanel = () => {
             >
             </span>
           </div>
+          <span
+            className={styles.singleButton + ' ' + styles.title_icon}
+            onClick={() => {
+              playSeDialogOpen();
+              showGlogalDialog({
+                title: t('buttons.titleTips'),
+                leftText: t('$common.yes'),
+                rightText: t('$common.no'),
+                leftFunc: () => {
+                  backToTitle();
+                },
+                rightFunc: () => { },
+              });
+            }}
+            onMouseEnter={playSeEnter}
+          >
+          </span>
           {GUIStore.showTextBox && (
             <span
-              className={styles.singleButton}
+              className={styles.hide + ' ' + styles.singleButton + ' ' + styles.normal_icon}
               style={{ fontSize }}
               onClick={() => {
                 setComponentVisibility('showTextBox', false);
@@ -126,39 +143,11 @@ export const BottomControlPanel = () => {
               }}
               onMouseEnter={playSeEnter}
             >
-              <PreviewCloseOne
-                className={styles.button}
-                theme="outline"
-                size={size}
-                fill="#f5f5f7"
-                strokeWidth={strokeWidth}
-              />
-              <span className={styles.button_text}>{t('buttons.hide')}</span>
-            </span>
-          )}
-          {!GUIStore.showTextBox && (
-            <span
-              className={styles.singleButton}
-              style={{ fontSize }}
-              onClick={() => {
-                setComponentVisibility('showTextBox', true);
-                playSeClick();
-              }}
-              onMouseEnter={playSeEnter}
-            >
-              <PreviewOpen
-                className={styles.button}
-                theme="outline"
-                size={size}
-                fill="#f5f5f7"
-                strokeWidth={strokeWidth}
-              />
-              <span className={styles.button_text}>{t('buttons.show')}</span>
             </span>
           )}
           {GUIStore.showBacklogIcon && (
             <span
-              className={styles.singleButton}
+              className={styles.backlog + ' ' + styles.singleButton + ' ' + styles.normal_icon}
               style={{ fontSize }}
               onClick={() => {
                 setComponentVisibility('showBacklog', true);
@@ -167,18 +156,10 @@ export const BottomControlPanel = () => {
               }}
               onMouseEnter={playSeEnter}
             >
-              <AlignTextLeftOne
-                className={styles.button}
-                theme="outline"
-                size={size}
-                fill="#f5f5f7"
-                strokeWidth={strokeWidth}
-              />
-              <span className={styles.button_text}>{t('buttons.backlog')}</span>
             </span>
           )}
           <span
-            className={styles.singleButton}
+            className={styles.replay + ' ' + styles.singleButton + ' ' + styles.normal_icon}
             style={{ fontSize }}
             onClick={() => {
               let VocalControl: any = document.getElementById('currentVocal');
@@ -191,18 +172,10 @@ export const BottomControlPanel = () => {
             }}
             onMouseEnter={playSeEnter}
           >
-            <ReplayMusic
-              className={styles.button}
-              theme="outline"
-              size={size}
-              fill="#f5f5f7"
-              strokeWidth={strokeWidth}
-            />
-            <span className={styles.button_text}>{t('buttons.replay')}</span>
           </span>
           <span
             id="Button_ControlPanel_auto"
-            className={styles.singleButton}
+            className={styles.auto + ' ' + styles.singleButton + ' ' + styles.normal_icon}
             style={{ fontSize }}
             onClick={() => {
               switchAuto();
@@ -210,12 +183,10 @@ export const BottomControlPanel = () => {
             }}
             onMouseEnter={playSeEnter}
           >
-            <PlayOne className={styles.button} theme="outline" size={size} fill="#f5f5f7" strokeWidth={strokeWidth} />
-            <span className={styles.button_text}>{t('buttons.auto')}</span>
           </span>
           <span
             id="Button_ControlPanel_fast"
-            className={styles.singleButton}
+            className={styles.forward + ' ' + styles.singleButton + ' ' + styles.normal_icon}
             style={{ fontSize }}
             onClick={() => {
               switchFast();
@@ -223,14 +194,6 @@ export const BottomControlPanel = () => {
             }}
             onMouseEnter={playSeEnter}
           >
-            <DoubleRight
-              className={styles.button}
-              theme="outline"
-              size={size}
-              fill="#f5f5f7"
-              strokeWidth={strokeWidth}
-            />
-            <span className={styles.button_text}>{t('buttons.forward')}</span>
           </span>
           {/* <span
             className={styles.singleButton + ' ' + styles.fastsave}
@@ -265,7 +228,7 @@ export const BottomControlPanel = () => {
             <div className={styles.fastSlPreview + ' ' + styles.fastLPreview}>{fastSlPreview}</div>
           </span> */}
           {GUIStore.showBacklogIcon && (<span
-            className={styles.singleButton}
+            className={styles.save + ' ' + styles.singleButton + ' ' + styles.normal_icon + ' ' + `${GUIStore.isGuiding ? styles.glowEffect : ''}`}
             style={{ fontSize }}
             onClick={() => {
               setMenuPanel(MenuPanelTag.Save);
@@ -275,11 +238,9 @@ export const BottomControlPanel = () => {
             }}
             onMouseEnter={playSeEnter}
           >
-            <Save className={styles.button} theme="outline" size={size} fill="#f5f5f7" strokeWidth={strokeWidth} />
-            <span className={`${styles.button_text} ${GUIStore.isGuiding ? styles.glowEffect : ''}`}>{t('buttons.save')}</span>
           </span>)}
           {GUIStore.showBacklogIcon && (<span
-            className={styles.singleButton}
+            className={styles.load + ' ' + styles.singleButton + ' ' + styles.normal_icon}
             style={{ fontSize }}
             onClick={() => {
               setMenuPanel(MenuPanelTag.Load);
@@ -288,17 +249,9 @@ export const BottomControlPanel = () => {
             }}
             onMouseEnter={playSeEnter}
           >
-            <FolderOpen
-              className={styles.button}
-              theme="outline"
-              size={size}
-              fill="#f5f5f7"
-              strokeWidth={strokeWidth}
-            />
-            <span className={styles.button_text}>{t('buttons.load')}</span>
           </span>)}
           <span
-            className={styles.singleButton}
+            className={styles.options + ' ' + styles.singleButton + ' ' + styles.normal_icon}
             style={{ fontSize }}
             onClick={() => {
               setMenuPanel(MenuPanelTag.Option);
@@ -307,16 +260,8 @@ export const BottomControlPanel = () => {
             }}
             onMouseEnter={playSeEnter}
           >
-            <SettingTwo
-              className={styles.button}
-              theme="outline"
-              size={size}
-              fill="#f5f5f7"
-              strokeWidth={strokeWidth}
-            />
-            <span className={styles.button_text}>{t('buttons.options')}</span>
           </span>
-          <span
+          {/* <span
             className={styles.singleButton}
             style={{ fontSize }}
             onClick={() => {
@@ -335,7 +280,7 @@ export const BottomControlPanel = () => {
           >
             <Home className={styles.button} theme="outline" size={size} fill="#f5f5f7" strokeWidth={strokeWidth} />
             <span className={styles.button_text}>{t('buttons.title')}</span>
-          </span>
+          </span> */}
           {/* <span
             className={styles.singleButton}
             style={{ fontSize }}
