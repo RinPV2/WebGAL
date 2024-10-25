@@ -181,7 +181,7 @@ export default function IMSSTextbox(props: ITextboxProps) {
           wordBreak: isSafari || props.isFirefox ? 'break-all' : undefined,
           display: isSafari ? 'flex' : undefined,
           flexWrap: isSafari ? 'wrap' : undefined,
-          height: '2.2em', //这里是为了让每一行都有一个固定的高度，不然会出现高度不一致的情况
+          height: '1.8em', //这里是为了让每一行都有一个固定的高度，不然会出现高度不一致的情况
         }}
         key={`text-line-${index}`}
       >
@@ -204,9 +204,6 @@ export default function IMSSTextbox(props: ITextboxProps) {
                 ? applyStyle('TextBox_main_miniavatarOff', styles.TextBox_main_miniavatarOff)
                 : undefined)
             }
-            style={{
-              opacity: `${textboxOpacity / 100}`,
-            }}
           />
           <div
             id="textBoxMain"
