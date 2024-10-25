@@ -40,6 +40,7 @@ export const SCRIPT_CONFIG = [
   },
   { scriptString: 'hideSave', scriptType: commandType.hideSave },
   { scriptString: 'hideLoad', scriptType: commandType.hideLoad },
+  { scriptString: 'showBookIcon', scriptType: commandType.showBookIcon },
 ];
 export const ADD_NEXT_ARG_LIST = [
   commandType.bgm,

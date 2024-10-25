@@ -89,7 +89,7 @@ export const BottomControlPanel = () => {
           {GUIStore.isGuiding && GUIStore.showBacklogIcon && (
             <div className={styles.overlay}></div>  // 全屏遮罩层
           )}
-          <div className={styles.book_container}>
+          {GUIStore.showBookIcon && (<div className={styles.book_container}>
             <span
               id="Button_Book"
               className={styles.book_icon + ' ' + styles.singleButton}
@@ -115,7 +115,7 @@ export const BottomControlPanel = () => {
               onMouseEnter={playSeEnter}
             >
             </span>
-          </div>
+          </div>)}
           <span
             className={styles.singleButton + ' ' + styles.title_icon}
             onClick={() => {

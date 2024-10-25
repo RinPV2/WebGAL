@@ -43,6 +43,7 @@ import en from '@/translations/en';
 import { enableEarthquake } from '../gameScripts/enableEarthquake';
 import { hideSave } from '../gameScripts/hideSave';
 import { hideLoad } from '../gameScripts/hideLoad';
+import { showBookIcon } from '../gameScripts/showBookIcon';
 
 export const SCRIPT_TAG_MAP = defineScripts({
   intro: ScriptConfig(commandType.intro, intro),
@@ -83,6 +84,7 @@ export const SCRIPT_TAG_MAP = defineScripts({
   enableEarthquake: ScriptConfig(commandType.enableEarthquake, enableEarthquake, { next: true }),
   hideSave: ScriptConfig(commandType.hideSave, hideSave, { next: true }),
   hideLoad: ScriptConfig(commandType.hideLoad, hideLoad, { next: true }),
+  showBookIcon: ScriptConfig(commandType.showBookIcon, showBookIcon, { next: true }),
   // if: ScriptConfig(commandType.if, undefined, { next: true }),
 });
 

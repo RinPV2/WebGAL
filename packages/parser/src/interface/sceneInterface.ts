@@ -45,6 +45,7 @@ export enum commandType {
   enableEarthquake, // 启用地震
   hideSave, // 隐藏式存档
   hideLoad, // 隐藏式读档
+  showBookIcon, // 显示圣典按钮
 }
 
 /**

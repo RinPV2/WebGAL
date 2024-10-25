@@ -32,6 +32,7 @@ export interface IGuiState {
   showBacklogIcon: boolean;
   isGuiding: boolean;
   showBook: boolean; // 显示圣典
+  showBookIcon: boolean; // 显示圣典按钮
 }
 
 export type componentsVisibility = Pick<

@@ -30,6 +30,7 @@ const initState: IGuiState = {
   showBacklogIcon: true,
   isGuiding: false,
   showBook: false,
+  showBookIcon: false,
 };
 
 /**
