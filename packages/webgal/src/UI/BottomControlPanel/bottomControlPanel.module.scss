@@ -63,7 +63,7 @@
   color: white;
   font-size: 150%;
   padding: 0.3em 0.3em 0 0.15em;
-  transition: background-color 0.5s;
+  transition: filter 0.5s;
   cursor: pointer;
   border-radius: 4px;
   margin: 0 0.1em 0 0.1em;
@@ -71,7 +71,7 @@
 }
 
 .singleButton:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
 }
 
 .fastSlPreview {
@@ -171,4 +171,15 @@
   position: fixed;
   top: 10px;  // 距离顶部的距离
   left: 10px; // 距离左边的距离
+}
+
+.book_icon{
+  left: 20px;
+  display: block;
+  width: 218px;  // 图标宽度
+  height: 147px;  // 图标高度
+  background: url('./book.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
 }

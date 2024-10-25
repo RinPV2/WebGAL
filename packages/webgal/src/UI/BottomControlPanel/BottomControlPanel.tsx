@@ -92,7 +92,7 @@ export const BottomControlPanel = () => {
           <div className={styles.book_container}>
             <span
               id="Button_Book"
-              className={styles.singleButton}
+              className={styles.book_icon + ' ' + styles.singleButton}
               style={{ fontSize: big_fontSize }}
               onClick={() => {
                 playSeClick();
@@ -114,14 +114,6 @@ export const BottomControlPanel = () => {
               }}
               onMouseEnter={playSeEnter}
             >
-              <BookOpen
-                className={styles.button}
-                theme="outline"
-                size={big_size}
-                fill="#f5f5f7"
-                strokeWidth={strokeWidth}
-              />
-              <span className={styles.button_text}>{t('buttons.book')}</span>
             </span>
           </div>
           {GUIStore.showTextBox && (
