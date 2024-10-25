@@ -47,7 +47,8 @@ $height: 330px;
 
 .TextBox_Background {
   z-index: 2;
-  background: linear-gradient(rgba(245, 247, 250, 1) 0%, rgba(189, 198, 222, 1) 100%);
+  background: no-repeat center url('./ui/textbox.png');
+  background-size: cover;
 }
 
 @keyframes showSoftly {

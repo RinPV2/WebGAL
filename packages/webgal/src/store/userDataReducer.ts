@@ -32,7 +32,7 @@ const initialOptionSet: IOptionData = {
   seVolume: 100, // 音效音量
   uiSeVolume: 50, // UI音效音量
   textboxFont: textFont.song,
-  textboxOpacity: 75,
+  textboxOpacity: 100,
   language: language.zhCn,
   voiceInterruption: voiceOption.yes,
   fullScreen: fullScreenOption.off,

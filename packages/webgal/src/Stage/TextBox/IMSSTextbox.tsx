@@ -198,7 +198,7 @@ export default function IMSSTextbox(props: ITextboxProps) {
             className={
               applyStyle('TextBox_main', styles.TextBox_main) +
               ' ' +
-              applyStyle('TextBox_Background', styles.TextBox_Background) +
+              styles.TextBox_Background +
               ' ' +
               (miniAvatar === ''
                 ? applyStyle('TextBox_main_miniavatarOff', styles.TextBox_main_miniavatarOff)
@@ -229,29 +229,16 @@ export default function IMSSTextbox(props: ITextboxProps) {
             {isHasName && (
               <>
                 <div
-                  className={
-                    applyStyle('TextBox_showName', styles.TextBox_showName) +
-                    ' ' +
-                    applyStyle('TextBox_ShowName_Background', styles.TextBox_ShowName_Background)
-                  }
-                  style={{
-                    opacity: `${textboxOpacity / 100}`,
-                    fontSize: '200%',
-                  }}
-                >
-                  <span style={{ opacity: 0 }}>{nameElementList}</span>
-                </div>
-                <div
                   className={applyStyle('TextBox_showName', styles.TextBox_showName)}
                   style={{
-                    fontSize: '200%',
+                    fontSize: '150%',
                   }}
                 >
                   {nameElementList}
                 </div>
               </>
             )}
-            <div
+            <div id="textMain"
               className={applyStyle('text', styles.text)}
               style={{
                 fontSize,

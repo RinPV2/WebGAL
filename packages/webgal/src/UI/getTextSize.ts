@@ -3,7 +3,7 @@ export function getTextSize(size: number) {
     case 0:
       return 150;
     case 1:
-      return 205;
+      return 180;
     case 2:
       return 240;
     default:
