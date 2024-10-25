@@ -2,13 +2,15 @@
   height: 100%;
   width: 100%;
   position: absolute;
-  background: url('./info.png');
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('./info.png');
   background-size: cover;
   background-position: center;
+  background-blend-mode: color-dodge;
   position: absolute;
   text-align: center;
   animation: fadeIn 0.25s ease-in-out;
   z-index: 999;
+  pointer-events: none;
 }
 
 .infoContainer:empty {

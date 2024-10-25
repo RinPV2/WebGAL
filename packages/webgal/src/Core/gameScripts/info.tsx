@@ -55,7 +55,7 @@ export const info = (sentence: ISentence): IPerform => {
   }
 
   const infoContainerStyle = {
-    background: backgroundColor,
+    // background: backgroundColor,
     color: color,
     fontSize: fontSize || '150%',
     width: '100%',

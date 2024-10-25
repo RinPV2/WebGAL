@@ -9,6 +9,5 @@ setVar:zhenyan =false -global;
 showBacklogIcon:unshow;
 isGuiding:off;
 showbook:off;
-info: 按下"月光印记"存储游戏 -hold;
 ;:现在GlobalNum是{GlobalNum} -hold;
 changeScene:opening.txt;
