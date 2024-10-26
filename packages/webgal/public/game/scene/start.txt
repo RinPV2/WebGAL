@@ -1,13 +1,14 @@
 ;start不要写内容，主要用来跳转和注册变量
-;:GlobalNum={GlobalNum} -when=GlobalNum==first;
-setVar:GlobalNum=0 -global -when=GlobalNum==first;
-setVar:miyue=false -global;
-setVar:xiedu=false -global;
-setVar:niming=false -global;
-setVar:qiyue=false -global;
-setVar:zhenyan =false -global;
-showBacklogIcon:unshow;
+pixiInit;
+setVar:GlobalNum=0 -global -when=GlobalNum==init;
+setVar:miyue=false -global -when=miyue==init;
+setVar:xiedu=false -global -when=xiedu==init;
+setVar:niming=false -global -when=niming==init;
+setVar:qiyue=false -global -when=qiyue==init;
+setVar:zhenyan =false -global -when=zhenyan==init;
+setVar:showSave=false -global -when=showSave==init;
 isGuiding:off;
-showBookIcon:unshow;
-;:现在GlobalNum是{GlobalNum} -hold;
+showBacklogIcon:unshow -when=showSave==false;
+showBookIcon:unshow -when=GlobalNum==0;
+:现在GlobalNum是{GlobalNum} miyue={miyue} xiedu={xiedu} niming={niming} |qiyue={qiyue} zhenyan={zhenyan} showSave={showSave};
 changeScene:opening.txt;

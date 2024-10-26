@@ -29,8 +29,8 @@ const initState: IGuiState = {
   isShowLogo: true,
   showBacklogIcon: true,
   isGuiding: false,
-  showBook: false,
-  showBookIcon: false,
+  showBook: true,
+  showBookIcon: true,
 };
 
 /**
