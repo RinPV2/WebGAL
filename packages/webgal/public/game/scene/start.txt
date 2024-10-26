@@ -10,5 +10,5 @@ setVar:showSave=false -global -when=showSave==init;
 isGuiding:off;
 showBacklogIcon:unshow -when=showSave==false;
 showBookIcon:unshow -when=GlobalNum==0;
-:现在GlobalNum是{GlobalNum} miyue={miyue} xiedu={xiedu} niming={niming} |qiyue={qiyue} zhenyan={zhenyan} showSave={showSave};
+;:现在GlobalNum是{GlobalNum} miyue={miyue} xiedu={xiedu} niming={niming} |qiyue={qiyue} zhenyan={zhenyan} showSave={showSave};
 changeScene:opening.txt;
