@@ -11,5 +11,4 @@ isGuiding:off;
 showBacklogIcon:unshow -when=showSave==false;
 showBookIcon:unshow -when=GlobalNum==0;
 ;:现在GlobalNum是{GlobalNum} miyue={miyue} xiedu={xiedu} niming={niming} |qiyue={qiyue} zhenyan={zhenyan} showSave={showSave};
-:[abcdefg](style=color:#B5495B\; ruFont=on) - hold;
 changeScene:opening.txt;
