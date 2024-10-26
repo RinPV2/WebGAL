@@ -110,6 +110,7 @@ export default function IMSSTextbox(props: ITextboxProps) {
       let style_alltext = '';
       let show_glow = false;
       let sp_font = false;
+      let ru_font = false;
       if (en.enhancedValue) {
         const data = en.enhancedValue;
         for (const dataElem of data) {
@@ -128,6 +129,8 @@ export default function IMSSTextbox(props: ITextboxProps) {
               show_glow = true;
             case 'spFont':
               sp_font = true;
+            case 'ruFont':
+              ru_font = true;
           }
         }
       }
@@ -151,7 +154,7 @@ export default function IMSSTextbox(props: ITextboxProps) {
             key={currentDialogKey + index}
             style={{ animationDelay: `${delay}ms`, animationDuration: `${textDuration}ms` }}
           >
-            <span className={`${styles.zhanwei} ${styleAllText} ${show_glow ? styles.show_for_glow : ''} ${sp_font ? styles.special_font : ''}`}>
+            <span className={`${styles.zhanwei} ${styleAllText} ${show_glow ? styles.show_for_glow : ''} ${sp_font ? styles.special_font : ''} ${ru_font ? styles.runicesque_font : ''}`}>
               {e}
               <span className={`${applyStyle('outer', styles.outer)} ${styleClassName} ${styleAllText} ${show_glow ? styles.hide_for_glow : ''}`}>{e}</span>
               {isUseStroke && <span className={`${applyStyle('inner', styles.inner)} ${styleAllText} ${show_glow ? styles.hide_for_glow : ''}`}>{e}</span>}
@@ -167,7 +170,7 @@ export default function IMSSTextbox(props: ITextboxProps) {
           key={currentDialogKey + index}
           style={{ animationDelay: `${delay}ms`, position: 'relative' }}
         >
-          <span className={`${styles.zhanwei} ${styleAllText} ${show_glow ? styles.show_for_glow : ''} ${sp_font ? styles.special_font : ''}`}>
+          <span className={`${styles.zhanwei} ${styleAllText} ${show_glow ? styles.show_for_glow : ''} ${sp_font ? styles.special_font : ''} ${ru_font ? styles.runicesque_font : ''}`}>
             {e}
             <span className={`${applyStyle('outer', styles.outer)} ${styleClassName} ${styleAllText} ${show_glow ? styles.hide_for_glow : ''}`}>{e}</span>
             {isUseStroke && <span className={`${applyStyle('inner', styles.inner)} ${styleAllText} ${show_glow ? styles.hide_for_glow : ''}`}>{e}</span>}

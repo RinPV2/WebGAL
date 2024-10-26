@@ -80,15 +80,17 @@ $height: 330px;
   white-space: nowrap;
   //background-image: linear-gradient(rgba(255, 255, 255, 1) 0%, rgb(225, 237, 255) 100%);
   background-image: linear-gradient(#0B346E 0%,
-    //#f5f7fa 45%,
-    #141423 100%);
+      //#f5f7fa 45%,
+      #141423 100%);
   //background: rgba(255, 255, 255, 1);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   z-index: 2;
-  display: inline-block;   /* 与文本对齐 */
-  vertical-align: middle;  /* 确保注音整体的垂直居中 */
+  display: inline-block;
+  /* 与文本对齐 */
+  vertical-align: middle;
+  /* 确保注音整体的垂直居中 */
 }
 
 .inner {
@@ -97,16 +99,21 @@ $height: 330px;
   -webkit-text-stroke: 0.1em rgba(255, 255, 255, 1);
   z-index: 1;
   //text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.75);
-  display: inline-block;   /* 内层元素同样行内块布局 */
-  vertical-align: middle;  /* 确保与外层的对齐一致 */
+  display: inline-block;
+  /* 内层元素同样行内块布局 */
+  vertical-align: middle;
+  /* 确保与外层的对齐一致 */
 }
 
 .zhanwei {
   color: transparent;
   white-space: nowrap;
-  display: inline-block;    /* 保持行内块布局 */
-  vertical-align: baseline; /* 确保文本基线对齐 */
-  position: relative;       /* 保持相对定位 */
+  display: inline-block;
+  /* 保持行内块布局 */
+  vertical-align: baseline;
+  /* 确保文本基线对齐 */
+  position: relative;
+  /* 保持相对定位 */
 }
 
 .hide_for_glow {
@@ -241,33 +248,54 @@ $height: 330px;
 
 @keyframes glow_inner {
   0% {
-    text-shadow: 
-      0 0 0 #FFD700, /* 内层的较小的光晕 */
-      0 0 20px #E2C027, /* 中间层的橙黄色光晕 */
-      0 0 30px #FC0,    /* 外层的金黄色光晕 */
-      1px 1px 3px rgba(0, 0, 0, 0.75), /* 边缘的黑色阴影 */
-      0 5px 15px rgba(255, 215, 56, 0.5); /* 更大范围的金黄色光晕 */
+    text-shadow:
+      0 0 0 #FFD700,
+      /* 内层的较小的光晕 */
+      0 0 20px #E2C027,
+      /* 中间层的橙黄色光晕 */
+      0 0 30px #FC0,
+      /* 外层的金黄色光晕 */
+      1px 1px 3px rgba(0, 0, 0, 0.75),
+      /* 边缘的黑色阴影 */
+      0 5px 15px rgba(255, 215, 56, 0.5);
+    /* 更大范围的金黄色光晕 */
   }
-  
+
   50% {
-    text-shadow: 
-      0 0 20px #FFD700, /* 内层更亮的光晕 */
-      0 0 40px #E2C027, /* 中间层更亮的光晕 */
-      0 0 60px #FCC307,    /* 外层更亮的金黄色光晕 */
-      1px 1px 5px rgba(0, 0, 0, 0.75), /* 边缘的阴影稍微扩散 */
-      0 10px 30px rgba(255, 215, 56, 0.75); /* 更大范围的金黄色光晕 */
+    text-shadow:
+      0 0 20px #FFD700,
+      /* 内层更亮的光晕 */
+      0 0 40px #E2C027,
+      /* 中间层更亮的光晕 */
+      0 0 60px #FCC307,
+      /* 外层更亮的金黄色光晕 */
+      1px 1px 5px rgba(0, 0, 0, 0.75),
+      /* 边缘的阴影稍微扩散 */
+      0 10px 30px rgba(255, 215, 56, 0.75);
+    /* 更大范围的金黄色光晕 */
   }
-  
+
   100% {
-    text-shadow: 
-      0 0 0 #FFD700, /* 恢复内层光晕 */
-      0 0 20px #E2C027, /* 恢复中间层光晕 */
-      0 0 30px #FC0,    /* 恢复外层光晕 */
-      1px 1px 3px rgba(0, 0, 0, 0.75), /* 恢复黑色阴影 */
-      0 5px 15px rgba(255, 215, 56, 0.5); /* 恢复大范围光晕 */
+    text-shadow:
+      0 0 0 #FFD700,
+      /* 恢复内层光晕 */
+      0 0 20px #E2C027,
+      /* 恢复中间层光晕 */
+      0 0 30px #FC0,
+      /* 恢复外层光晕 */
+      1px 1px 3px rgba(0, 0, 0, 0.75),
+      /* 恢复黑色阴影 */
+      0 5px 15px rgba(255, 215, 56, 0.5);
+    /* 恢复大范围光晕 */
   }
 }
 
 .special_font {
-  font-family: 'SpecialFont', sans-serif; /* Fallback to sans-serif if SpecialFont is not available */
+  font-family: 'SpecialFont', sans-serif;
+  /* Fallback to sans-serif if SpecialFont is not available */
+}
+
+.runicesque_font {
+  font-family: 'Runicesque', sans-serif;
+  /* Fallback to sans-serif if SpecialFont is not available */
 }
