@@ -8,6 +8,6 @@ setVar:qiyue=false -global;
 setVar:zhenyan =false -global;
 showBacklogIcon:unshow;
 isGuiding:off;
-showbook:off;
+showBookIcon:show;
 ;:现在GlobalNum是{GlobalNum} -hold;
 changeScene:opening.txt;
