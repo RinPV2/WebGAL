@@ -14,8 +14,9 @@ const setButton = (on: boolean) => {
   const autoIcon = document.getElementById('Button_ControlPanel_fast');
   if (autoIcon) {
     if (on) {
-      autoIcon.className = styles.button_on;
-    } else autoIcon.className = styles.singleButton;
+      autoIcon.className =
+        styles.forward + ' ' + styles.singleButton + ' ' + styles.normal_icon + ' ' + styles.singleButton_hover;
+    } else autoIcon.className = styles.forward + ' ' + styles.singleButton + ' ' + styles.normal_icon;
   }
 };
 

@@ -9,237 +9,245 @@
 //}
 
 .main {
-  //border-bottom: 2px solid rgba(255,255,255,0.25);
-  position: absolute;
-  bottom: 55px;
-  //will-change: z-index;
-  z-index: 9;
-  display: flex;
-  //background-image: linear-gradient(rgba(245, 247, 250, 0.7) 0%, rgba(195, 207, 226, 0.7) 100%);
-  flex-flow: row;
-  justify-content: center;
-  align-items: center;
-  //width: 100%;
-  height: 70px;
-  right: 345px;
-  border-radius: 35px;
-  //backdrop-filter: blur(5px);
-  padding: 0.15em 1.75em 0.15em 1.75em;
-  //background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.25) 100%);
-  //border-radius: 10px;
-  font-size: 80%;
+    //border-bottom: 2px solid rgba(255,255,255,0.25);
+    position: absolute;
+    bottom: 55px;
+    //will-change: z-index;
+    z-index: 9;
+    display: flex;
+    //background-image: linear-gradient(rgba(245, 247, 250, 0.7) 0%, rgba(195, 207, 226, 0.7) 100%);
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    //width: 100%;
+    height: 70px;
+    right: 345px;
+    border-radius: 35px;
+    //backdrop-filter: blur(5px);
+    padding: 0.15em 1.75em 0.15em 1.75em;
+    //background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.25) 100%);
+    //border-radius: 10px;
+    font-size: 80%;
 }
 
 .button {
-  position: relative;
-  top: 2px;
-  padding: 0 0 0 0;
-  filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 1));
+    position: relative;
+    top: 2px;
+    padding: 0 0 0 0;
+    filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 1));
 }
 
 .button_text {
-  position: relative;
-  bottom: 8px;
-  color: white;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
-  padding-left: 3px;
+    position: relative;
+    bottom: 8px;
+    color: white;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
+    padding-left: 3px;
 }
 
 .button_on {
-  height: 100%;
-  display: inline-block;
-  font-size: 150%;
-  padding: 0.25em 0.3em 0 0.15em;
-  transition: background-color 0.5s;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
-  margin: 0 0.1em 0 0.1em;
+    height: 100%;
+    display: inline-block;
+    font-size: 150%;
+    padding: 0.25em 0.3em 0 0.15em;
+    transition: background-color 0.5s;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    margin: 0 0.1em 0 0.1em;
 }
 
 .singleButton {
-  //border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  height: 100%;
-  display: inline-block;
-  color: white;
-  font-size: 150%;
-  // padding: 0.3em 0.3em 0 0.15em;
-  transition: filter 0.5s;
-  cursor: pointer;
-  border-radius: 4px;
-  margin: 0 0.1em 0 0.1em;
-  position: relative;
+    //border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    height: 100%;
+    display: inline-block;
+    color: white;
+    font-size: 150%;
+    // padding: 0.3em 0.3em 0 0.15em;
+    transition: filter 0.5s;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 0 0.1em 0 0.1em;
+    position: relative;
 }
 
 .singleButton:hover {
-  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+}
+
+.singleButton_hover {
+    filter: drop-shadow(0 0 5px rgb(255, 230, 71)) drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
 }
 
 .fastSlPreview {
-  position: absolute;
-  top: -250px;
-  right: 0;
-  background: linear-gradient(315deg, rgba(253, 251, 251, 0.9) 0%, rgba(235, 237, 238, 0.85) 100%);
-  width: 900px;
-  height: 230px;
-  color: #005caf;
-  border-radius: 5px;
-  display: none;
-  animation: fastSlEnter 0.33s;
-  transition: opacity 0.33s;
+    position: absolute;
+    top: -250px;
+    right: 0;
+    background: linear-gradient(315deg, rgba(253, 251, 251, 0.9) 0%, rgba(235, 237, 238, 0.85) 100%);
+    width: 900px;
+    height: 230px;
+    color: #005caf;
+    border-radius: 5px;
+    display: none;
+    animation: fastSlEnter 0.33s;
+    transition: opacity 0.33s;
 }
 
 .fastsave:hover .fastSPreview {
-  display: block;
+    display: block;
 }
 
 .fastload:hover .fastLPreview {
-  display: block;
+    display: block;
 }
 
 @keyframes fastSlEnter {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .slPreviewMain {
-  padding: 0.5em 0.5em 0.5em 0.5em;
-  display: flex;
-  box-sizing: border-box;
-  height: 100%;
-  width: 100%;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    display: flex;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
 }
 
 .imgContainer {
-  display: flex;
-  overflow: hidden;
-  border-radius: 5px;
-  //outline: 4px solid #005caf;
-  flex-shrink: 0;
-  height: 100%;
+    display: flex;
+    overflow: hidden;
+    border-radius: 5px;
+    //outline: 4px solid #005caf;
+    flex-shrink: 0;
+    height: 100%;
 }
 
 .textContainer {
-  overflow: hidden;
-  padding: 0 0 0 0.5em;
+    overflow: hidden;
+    padding: 0 0 0 0.5em;
 }
 
 .glowEffect {
-  animation: glow_text 1.5s ease-in-out infinite; 
-  z-index: 1001; // 临时先用这个数值
+    animation: glow_text 1.5s ease-in-out infinite;
+    z-index: 1001; // 临时先用这个数值
 }
 
 @keyframes glow_text {
-  0% {
-    filter: drop-shadow(0 0 15px #ace5ff) drop-shadow(0 0 30px rgba(255, 255, 255, 0.8));
-  }
-  50% {
-    filter: drop-shadow(0 0 5px #ace5ffc8) drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
-  }
-  100% {
-    filter: drop-shadow(0 0 15px #ace5ff) drop-shadow(0 0 30px rgba(255, 255, 255, 0.8));
-  }
+    0% {
+        filter: drop-shadow(0 0 15px #ace5ff) drop-shadow(0 0 30px rgba(255, 255, 255, 0.8));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 5px #ace5ffc8) drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+    }
+
+    100% {
+        filter: drop-shadow(0 0 15px #ace5ff) drop-shadow(0 0 30px rgba(255, 255, 255, 0.8));
+    }
 }
 
 // 遮罩
 .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);  // 黑色遮罩背景
-  z-index: 1000;
-  pointer-events: all;
-  opacity: 0;  // 初始透明
-  animation: fadeIn 1s forwards;  // 动画效果
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); // 黑色遮罩背景
+    z-index: 1000;
+    pointer-events: all;
+    opacity: 0; // 初始透明
+    animation: fadeIn 1s forwards; // 动画效果
 }
 
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .book_container {
-  position: fixed;
-  top: 10px;  // 距离顶部的距离
-  left: 10px; // 距离左边的距离
+    position: fixed;
+    top: 10px; // 距离顶部的距离
+    left: 10px; // 距离左边的距离
 }
 
-.book_icon{
-  left: 20px;
-  display: block;
-  width: 218px;  // 图标宽度
-  height: 147px;  // 图标高度
-  background: no-repeat url('./book.png');
-  background-size: contain;
-  background-blend-mode: multiply;
+.book_icon {
+    left: 20px;
+    display: block;
+    width: 218px; // 图标宽度
+    height: 147px; // 图标高度
+    background: no-repeat url('./book.png');
+    background-size: contain;
+    background-blend-mode: multiply;
 }
 
-.title_icon{
-  position: fixed;
-  top: 30px;  // 距离顶部的距离
-  left: 2400px; // 距离左边的距离
-  display: block;
-  width: 100px;  // 图标宽度
-  height: 100px;  // 图标高度
-  background: no-repeat url('./title.png');
-  background-size: contain;
-  background-blend-mode: multiply;
+.title_icon {
+    position: fixed;
+    top: 30px; // 距离顶部的距离
+    left: 2400px; // 距离左边的距离
+    display: block;
+    width: 100px; // 图标宽度
+    height: 100px; // 图标高度
+    background: no-repeat url('./title.png');
+    background-size: contain;
+    background-blend-mode: multiply;
 }
 
-.normal_icon{
-  display: block;
-  width: 126px;  // 图标宽度
-  height: 60px;  // 图标高度
-  background-repeat: no-repeat;
-  background-blend-mode: multiply;
-  margin-left: -2px;
+.normal_icon {
+    display: block;
+    width: 126px; // 图标宽度
+    height: 60px; // 图标高度
+    background-repeat: no-repeat;
+    background-blend-mode: multiply;
+    margin-left: -2px;
 }
 
-.hide{
-  background: no-repeat url('./hide.png');
-  background-size: contain;
+.hide {
+    background: no-repeat url('./hide.png');
+    background-size: contain;
 }
 
-.backlog{
-  background: no-repeat url('./backlog.png');
-  background-size: contain;
+.backlog {
+    background: no-repeat url('./backlog.png');
+    background-size: contain;
 }
 
-.replay{
-  background: no-repeat url('./replay.png');
-  background-size: contain;
+.replay {
+    background: no-repeat url('./replay.png');
+    background-size: contain;
 }
 
-.auto{
-  background: no-repeat url('./auto.png');
-  background-size: contain;
+.auto {
+    background: no-repeat url('./auto.png');
+    background-size: contain;
 }
 
-.forward{
-  background: no-repeat url('./forward.png');
-  background-size: contain;
+.forward {
+    background: no-repeat url('./forward.png');
+    background-size: contain;
 }
 
-.save{
-  background: no-repeat url('./save.png');
-  background-size: contain;
+.save {
+    background: no-repeat url('./save.png');
+    background-size: contain;
 }
 
-.load{
-  background: no-repeat url('./load.png');
-  background-size: contain;
+.load {
+    background: no-repeat url('./load.png');
+    background-size: contain;
 }
 
-.options{
-  background: no-repeat url('./options.png');
-  background-size: contain;
+.options {
+    background: no-repeat url('./options.png');
+    background-size: contain;
 }
