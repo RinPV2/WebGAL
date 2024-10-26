@@ -65,6 +65,7 @@ export default class PixiStage {
    */
   public currentApp: PIXI.Application | null = null;
   public readonly effectsContainer: PIXI.Container;
+  public readonly effectsBgContainer: PIXI.Container;
   public frameDuration = 16.67;
   public notUpdateBacklogEffects = false;
   private readonly figureContainer: PIXI.Container;
@@ -125,12 +126,14 @@ export default class PixiStage {
     // 添加 3 个 Container 用于做渲染
     this.effectsContainer = new PIXI.Container();
     this.effectsContainer.zIndex = 3;
+    this.effectsBgContainer = new PIXI.Container();
+    this.effectsBgContainer.zIndex = 0;
     this.figureContainer = new PIXI.Container();
     this.figureContainer.sortableChildren = true; // 允许立绘启用 z-index
     this.figureContainer.zIndex = 2;
     this.backgroundContainer = new PIXI.Container();
-    this.backgroundContainer.zIndex = 0;
-    app.stage.addChild(this.effectsContainer, this.figureContainer, this.backgroundContainer);
+    this.backgroundContainer.zIndex = 1;
+    app.stage.addChild(this.effectsContainer, this.figureContainer, this.backgroundContainer, this.effectsBgContainer);
     this.currentApp = app;
     // 每 5s 获取帧率，并且防 loader 死
     const update = () => {

@@ -36,6 +36,7 @@ export const pixi = (sentence: ISentence): IPerform => {
       logger.warn('现在正在卸载pixi演出');
       container.destroy({ texture: true, baseTexture: true });
       WebGAL.gameplay.pixiStage?.effectsContainer.removeChild(container);
+      WebGAL.gameplay.pixiStage?.effectsBgContainer.removeChild(container);
       WebGAL.gameplay.pixiStage?.removeAnimation(tickerKey);
     },
     blockingNext: () => false,

@@ -7,7 +7,7 @@ import { t } from 'i18next';
 import { rand } from 'pixi-live2d-display-webgal';
 
 const starRail = () => {
-  const effectsContainer = WebGAL!.gameplay!.pixiStage!.effectsContainer;
+  const effectsBgContainer = WebGAL!.gameplay!.pixiStage!.effectsBgContainer;
   const app = WebGAL!.gameplay!.pixiStage!.currentApp!;
   const container = new PIXI.Container();
   const bloomFilter = new AdvancedBloomFilter({
@@ -18,7 +18,7 @@ const starRail = () => {
     quality: 20, // 增加模糊质量
   });
   container.filters = [bloomFilter];
-  effectsContainer.addChild(container);
+  effectsBgContainer.addChild(container);
 
   // 将容器移到中心
   container.x = app.screen.width / 2;
