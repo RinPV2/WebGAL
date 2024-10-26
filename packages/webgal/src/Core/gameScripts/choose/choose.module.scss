@@ -25,6 +25,7 @@
     background-repeat: no-repeat;
     margin: 0.5em 0 0.25em 0;
     transition: background-color 0.5s, border 0.5s, font-weight 0.5s, box-shadow 0.5s;
+    overflow: visible;
 
     &:hover:not(.Choose_item_disabled) {
         background: url('./item.png'), url('./add.png');
@@ -59,4 +60,35 @@
         transition: width 0s;
         /* 动态设置，不预设固定的动画 */
     }
+}
+
+/* 按住时触发的抖动动画 */
+@keyframes shake {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(-2px, 2px);
+    }
+
+    50% {
+        transform: translate(2px, -2px);
+    }
+
+    75% {
+        transform: translate(-2px, -2px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.Choose_item_long {
+    filter: blur(5px);
+}
+
+.Choose_item_long:active {
+    animation: shake 0.3s ease-in-out infinite;
 }

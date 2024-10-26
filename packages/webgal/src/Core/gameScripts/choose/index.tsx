@@ -89,19 +89,21 @@ function Choose(props: { chooseOptions: ChooseOption[] }) {
     const decreaseWidth = 2.5; // 每次减少的宽度
     const { playSeEnter, playSeClick } = useSEByWebgalStore();
     // 运行时计算JSX.Element[]
+    function getProperty(progress: number) {
+        return `brightness(${1.0 + 1.5 * progress / 100}) drop-shadow(0 0 ${progress / 10}px white) blur(${10.0 * (100 - progress) / 100}px)`;
+    }
     const runtimeBuildList = (chooseListFull: ChooseOption[]) => {
         return chooseListFull
             .filter((e, i) => whenChecker(e.showCondition))
             .map((e, i) => {
                 const enable = whenChecker(e.enableCondition);
-                const className = (enable ? '' : styles.Choose_item_disabled) + ' ' + styles.Choose_item;
-
                 let isLongPressTrigger = false;
                 let progressElement: HTMLElement | null = null;
                 let currentProgress = 0; // 当前进度
                 const chkLongPress = e.text.split('-');
                 if (chkLongPress.length > 1)
                     isLongPressTrigger = true;
+                const className = `${(enable ? '' : styles.Choose_item_disabled)}  ${styles.Choose_item} ${(isLongPressTrigger ? styles.Choose_item_long : '')}`;
                 const showText = chkLongPress[0];
                 // 新增长按处理逻辑
                 let timeoutId: ReturnType<typeof setTimeout> | null = null;
@@ -111,19 +113,19 @@ function Choose(props: { chooseOptions: ChooseOption[] }) {
                     if (!isLongPressTrigger) return;
 
                     // 获取进度条元素
-                    progressElement = (event.currentTarget as HTMLElement).firstElementChild?.firstElementChild as HTMLElement;
+                    progressElement = event.currentTarget as HTMLElement;
                     console.log(e.text, e);
 
                     if (progressElement) {
                         console.log('长按触发了！', event.currentTarget, progressElement);
-                        progressElement.style.setProperty('--progress-width', `${currentProgress}%`);
+                        progressElement.style.setProperty('filter', getProperty(currentProgress));
                     }
 
                     clearInterval(timeoutId!);
                     timeoutId = setInterval(() => {
                         currentProgress += (100 / longPressTime) * 50; // 5秒 = 5000ms，每次更新增加的宽度
                         if (progressElement) {
-                            progressElement.style.setProperty('--progress-width', `${currentProgress}%`);
+                            progressElement.style.setProperty('filter', getProperty(currentProgress));
                         }
                         // 当进度条满了，触发点击事件
                         if (currentProgress >= 100) {
@@ -151,7 +153,7 @@ function Choose(props: { chooseOptions: ChooseOption[] }) {
                             console.log('进度条复位到0，停止检测');
                         }
                         if (progressElement) {
-                            progressElement.style.setProperty('--progress-width', `${currentProgress}%`);
+                            progressElement.style.setProperty('filter', getProperty(currentProgress));
                         }
                     }, 50);
                 };
@@ -195,7 +197,6 @@ function Choose(props: { chooseOptions: ChooseOption[] }) {
                         onMouseLeave={handleMouseLeave}
                         onMouseEnter={handleMouseEnter}>
                         {showText}
-                        {/* {isLongPressTrigger && (<div className={styles.Progress_bar} />)} */}
                     </div>
                 );
             });
