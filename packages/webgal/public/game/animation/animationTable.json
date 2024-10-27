@@ -19,5 +19,6 @@
   "exit-to-left",
   "exit-to-right",
   "shake-in-air",
-  "jump"
+  "jump",
+  "shock"
 ]
