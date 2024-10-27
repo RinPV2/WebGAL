@@ -10,12 +10,17 @@ import useTrans from '@/hooks/useTrans';
 import { useTranslation } from 'react-i18next';
 import useSoundEffect from '@/hooks/useSoundEffect';
 import { getSavesFromStorage } from '@/Core/controller/storage/savesController';
+import { componentsVisibility } from '@/store/guiInterface';
+import { setVisibility } from '@/store/GUIReducer';
 
 export const Load: FC = () => {
   const { playSeClick, playSeEnter, playSePageChange } = useSoundEffect();
   const userDataState = useSelector((state: RootState) => state.userData);
   const saveDataState = useSelector((state: RootState) => state.saveData);
   const dispatch = useDispatch();
+  const setComponentVisibility = (component: keyof componentsVisibility, visibility: boolean) => {
+    dispatch(setVisibility({ component, visibility }));
+  };
   const page = [];
   for (let i = 1; i <= 20; i++) {
     let classNameOfElement = styles.Save_Load_top_button + ' ' + styles.Load_top_button;
@@ -81,6 +86,7 @@ export const Load: FC = () => {
     const saveElement = (
       <div
         onClick={() => {
+          setComponentVisibility('showBook', false);
           loadGame(i);
           playSeClick();
         }}

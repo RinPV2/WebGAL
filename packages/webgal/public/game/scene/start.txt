@@ -1,4 +1,4 @@
-;start不要写内容，主要用来跳转和注册变量
+;start不要写内容，主要用来跳转和注册变量;
 pixiInit;
 setVar:GlobalNum=0 -global -when=GlobalNum==init;
 setVar:miyue=false -global -when=miyue==init;
