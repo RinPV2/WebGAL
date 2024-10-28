@@ -34,6 +34,8 @@ export const intro = (sentence: ISentence): IPerform => {
         return styles.pixelateEffect;
       case 'revealAnimation':
         return styles.revealAnimation;
+      case 'spFadeIn':
+        return styles.spFadeIn;
       default:
         return styles.fadeIn;
     }

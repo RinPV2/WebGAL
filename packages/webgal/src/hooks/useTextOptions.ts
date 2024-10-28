@@ -3,9 +3,9 @@ import { playSpeed } from '@/store/userDataInterface';
 export function useTextDelay(type: playSpeed) {
   switch (type) {
     case playSpeed.slow:
-      return 80;
+      return 100;
     case playSpeed.normal:
-      return 35;
+      return 50;
     case playSpeed.fast:
       return 3;
   }
